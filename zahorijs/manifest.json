@@ -1,0 +1,22 @@
+{
+    "name": "ZahoriJs",
+    "description": "ZahoriJs",
+    "version": "1.0",
+    "permissions": [
+        "tabs", "http://*/*", "https://*/*"
+    ],
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwfjU5uEkM4XDoD9mDPhKIJUZaho5GKKFWuOJlpDEYuy1Rp+sUfZGcrGtPElQkVhTeMC/+LzXB98/8kJ1Y930178TT1gr5090O/lGO9XX99wD5yQiSS/tqZfk926JR//T9y4ukym7eNUdt9GgkNGQ+RjNxDko1w0ZwTgS7h3Vvf06US+Z0ZoFw3QTLFOOJ6WmGT+G8L9rF3Gs70gwoRj6315gFaRGAizN3xHxYPmqbL1kQLF+Qxs9FS24pUuXWGWiVqfmYyEQT0TnIZvi0iMSfogiKhQ1XksP4XfjAaatM1t9H3fbrWwa+LvmAo7m12ZihToyY2UZvKUoC0dyek+gmwIDAQAB",
+    "browser_action": {
+        "default_title": "ZahoriJs",
+        "default_icon": "icon.png"
+    },
+    "icons": {
+        "16": "icon2.png",
+        "48": "icon3.png",
+        "128": "icon4.png"
+    },
+    "background": {
+        "scripts": ["main.js"]
+    },
+    "manifest_version": 2
+}

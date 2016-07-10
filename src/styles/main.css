@@ -1,0 +1,656 @@
+/**
+ * USER TOURS STYLES
+ * version 2.0. - bbva
+ */
+
+.uts-overlay {
+    position: absolute;
+    z-index: 999999;
+    background-color: #000;
+    opacity: 0;
+    background: -moz-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.4) 0, rgba(0, 0, 0, 0.9) 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(0, 0, 0, 0.4)), color-stop(100%, rgba(0, 0, 0, 0.9)));
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.4) 0, rgba(0, 0, 0, 0.9) 100%);
+    background: -o-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.4) 0, rgba(0, 0, 0, 0.9) 100%);
+    background: -ms-radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.4) 0, rgba(0, 0, 0, 0.9) 100%);
+    background: radial-gradient(center, ellipse cover, rgba(0, 0, 0, 0.4) 0, rgba(0, 0, 0, 0.9) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#66000000', endColorstr='#e6000000', GradientType=1);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+.uts-usertour {
+  height: 0;
+  position: absolute;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE/Edge */
+  user-select: none;
+  /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+.uts-helperLayer {
+    position: fixed;
+    z-index: 9999998;
+    background-color: #FFF;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 2px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, .4);
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+.uts-helperLayer:before {
+    background: transparent;
+    border: solid 8192px #555;
+    content: '';
+    display: block;
+    height: inherit;
+    margin-top: -8192px;
+    margin-left: -8192px;
+    opacity: .5;
+    position: absolute;
+    width: inherit;
+    box-sizing: initial;
+}
+.uts-helperLayer .uts-global-close-button {
+    position: fixed;
+    top: 8px;
+    right: 8px;
+    background-color: white;
+    padding: 11px;
+    border-radius: 1px;
+    cursor: pointer;
+    -webkit-transition: box-shadow 0.1s ease-out;
+    -moz-transition: box-shadow 0.1s ease-out;
+    -ms-transition: box-shadow 0.1s ease-out;
+    -o-transition: box-shadow 0.1s ease-out;
+    transition: box-shadow 0.1s ease-out;
+}
+.uts-helperLayer .uts-global-close-button:hover {
+    -webkit-box-shadow: 0 0 8px 2px #FFFFFF;
+    box-shadow: 0 0 8px 2px #FFFFFF;
+}
+.uts-helperLayer .uts-global-close-button.uts-global-close-button-helperlayer-bottom {
+    top: initial;
+    right: 8px;
+    bottom: 8px;
+}
+.uts-helperLayer .uts-global-close-button.uts-global-close-button-tooltip-bottom {
+    top: initial;
+    right: 8px;
+    bottom: 8px;
+}
+.uts-bubble {
+    position: absolute;
+    padding: 17px 20px 10px;
+    background-color: #ffffff;
+    min-width: 340px;
+    max-width: 400px;
+    border-radius: 2px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, .4);
+    -webkit-transition: opacity 0.1s ease-out;
+    -moz-transition: opacity 0.1s ease-out;
+    -ms-transition: opacity 0.1s ease-out;
+    -o-transition: opacity 0.1s ease-out;
+    transition: opacity 0.1s ease-out;
+}
+.uts-bubble-title {
+    color: #262626;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: 300 20px;
+    line-height: auto;
+    overflow: hidden;
+    font-size: 18px;
+    margin-bottom: 8px;
+    padding-right: 10px;
+}
+.uts-bubble-text {
+    color: #262626;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+    font-size: 300 20px;
+    line-height: auto;
+    overflow: hidden;
+    font-size: 13px;
+    max-height: 15em;
+    line-height: 1.5em;
+    margin-right: 20px;
+}
+.uts-bubble-text p{
+    margin: 0 0 10px 0;
+}
+
+.uts-bubble-text strong{
+    font-weight: bold;
+}
+.uts-bubble-text-wrapper {
+    display: table;
+}
+.uts-bubble-icon {
+    width: 40px;
+    display: table-cell;
+    opacity: 0;
+    float: left;
+    margin: 6px 15px 0 0;
+    -moz-transition: opacity 0.3s;
+    /* Firefox 4 */
+    -webkit-transition: opacity 0.3s;
+    /* Safari and Chrome */
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+}
+.uts-bubble-buttons {
+    text-align: right;
+    margin-top: 20px;
+}
+.uts-button {
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: #4d90fe;
+    background-image: -webkit-linear-gradient(top, #4d90fe, #4787ed);
+    background-image: -moz-linear-gradient(top, #4d90fe, #4787ed);
+    background-image: -ms-linear-gradient(top, #4d90fe, #4787ed);
+    background-image: -o-linear-gradient(top, #4d90fe, #4787ed);
+    background-image: linear-gradient(top, #4d90fe, #4787ed);
+    border: 1px solid #3079ed;
+    color: #fff;
+    text-shadow: none;
+    display: block;
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    padding: 4px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-repeat: repeat-x;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.uts-button:hover {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: #357ae8;
+    background-image: -webkit-linear-gradient(top, #4d90fe, #357ae8);
+    background-image: -moz-linear-gradient(top, #4d90fe, #357ae8);
+    background-image: -ms-linear-gradient(top, #4d90fe, #357ae8);
+    background-image: -o-linear-gradient(top, #4d90fe, #357ae8);
+    background-image: linear-gradient(top, #4d90fe, #357ae8);
+    border: 1px solid #2f5bb7;
+    border-bottom-color: #2f5bb7;
+    color: #fff;
+    text-shadow: none;
+}
+
+/* overrides extra padding on button elements in Firefox */
+
+.uts-button::-moz-focus-inner {
+    color: #fff;
+    background-color: #4d90fe;
+    background-image: -webkit-linear-gradient(top, #4d90fe, #4787ed);
+    background-image: -moz-linear-gradient(top, #4d90fe, #4787ed);
+    background-image: -ms-linear-gradient(top, #4d90fe, #4787ed);
+    background-image: -o-linear-gradient(top, #4d90fe, #4787ed);
+    background-image: linear-gradient(top, #4d90fe, #4787ed);
+    border: 1px solid #3079ed;
+}
+.uts-skipbutton {}
+.uts-prevbutton {
+    display: none;
+}
+.uts-nextbutton {}
+.uts-disabled, .uts-disabled:hover, .uts-disabled:focus {
+    color: #9a9a9a;
+    border-color: #d4d4d4;
+    box-shadow: none;
+    cursor: default;
+    background-color: #f4f4f4;
+    background-image: none;
+    text-decoration: none;
+    display: none;
+}
+.uts-bullets {
+    text-align: right;
+}
+.uts-bullets ul {
+    clear: both;
+    margin: 15px auto 0;
+    padding: 0;
+    display: inline-block;
+}
+.uts-bullets ul li {
+    list-style: none;
+    float: left;
+    margin: 0 2px;
+}
+.uts-bullets ul li a {
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: #ccc;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    text-decoration: none;
+    cursor: default;
+}
+
+.uts-bullets ul li a.active {
+    background: #999;
+}
+
+.uts-bubble .uts-bubble-progressbar-wrapper{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+}
+
+.uts-progressbar {
+    width: 100%;
+    height: 4px;
+}
+.uts-progressbar span{
+    height: 100%;
+    background-color: #287cba;
+    display: block;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.uts-close-icon {
+    top: 5px;
+    position: absolute;
+    right: 5px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 6px;
+}
+.uts-close-icon:hover::before, .uts-close-icon:hover::after {
+    background: #2f2f2f;
+}
+.uts-close-icon::before, .uts-close-icon::after {
+    content: '';
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: #b9b9b9;
+}
+.uts-close-icon::before {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.uts-close-icon::after {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.uts-bubble hr {
+    margin: 6px 0;
+    margin: 0px 0 6px 0;
+    border: 0;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #ffffff;
+}
+.uts-bubble-buttons-wrapper {
+    height: 30px;
+    margin: 15px 0;
+}
+.uts-bubble-buttons-wrapper .uts-customButton {
+    margin: 10px 40px;
+    overflow: hidden;
+    max-height: 20px;
+}
+.uts-bubble-Checkbox-wrapper {
+    font-size: 12px;
+    text-align: right;
+    cursor: pointer;
+}
+.uts-bubble-Checkbox-wrapper .uts-checkbutton {
+    float: right;
+    color: #9e9e9e;
+}
+.uts-bubble-Checkbox-wrapper .uts-checkbutton .uts-checkbutton-checkbox {
+    width: 7px;
+    height: 7px;
+    border: 1px solid;
+    border-radius: 2px;
+    float: left;
+    vertical-align: super;
+    margin-top: 4px;
+    margin-right: 4px;
+    border-color: #9e9e9e;
+}
+.uts-bubble-Checkbox-wrapper .uts-checkbutton span {
+    float: left;
+}
+.uts-arrows-wrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.uts-arrows {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+.uts-arrows .uts-left-arrow {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    cursor: pointer;
+}
+.uts-arrows .uts-right-arrow {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    bottom: 0;
+    margin: auto;
+}
+
+.uts-arrows .uts-left-arrow span, .uts-arrows .uts-right-arrow span {
+    border-style: solid;
+    border-width: 2px 2px 0 0;
+    content: '';
+    display: inline-block;
+    height: 6px;
+    left: 0;
+    position: relative;
+    top: 6px;
+    -ms-transform: rotate(45deg);
+    /* IE 9 */
+    -webkit-transform: rotate(45deg);
+    /* Chrome, Safari, Opera */
+    transform: rotate(45deg);
+    vertical-align: top;
+    width: 6px;
+    color: #ffffff;
+    box-sizing: initial;
+}
+.uts-arrows .uts-left-arrow span {
+    left: 7px;
+    -ms-transform: rotate(-135deg);
+    /* IE 9 */
+    -webkit-transform: rotate(-135deg);
+    /* Chrome, Safari, Opera */
+    transform: rotate(-135deg);
+}
+.uts-arrows .uts-right-arrow span {
+    left: 5px;
+    -ms-transform: rotate(45deg);
+    /* IE 9 */
+    -webkit-transform: rotate(45deg);
+    /* Chrome, Safari, Opera */
+    transform: rotate(45deg);
+}
+.round-button-circle {
+    width: 20px;
+    height: 0;
+    padding-bottom: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #d8d8d8!important;
+    border: none!important;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    right: 15px;
+}
+.round-button-circle:hover {
+    background: #e1e1e1!important;
+    border: none!important;
+}
+.round-button a {
+    display: block;
+    float: left;
+    width: 100%;
+    padding-top: 50%;
+    padding-bottom: 50%;
+    line-height: 1em;
+    margin-top: -0.5em;
+}
+.uts-triangle {
+    width: 0;
+    height: 0;
+    border: 5px solid white;
+    content: '';
+    position: absolute;
+    border-style: solid;
+}
+.uts-right {
+    top: 15px;
+}
+.uts-right .uts-triangle {
+    left: -30px;
+    top: 0;
+    border-style: solid;
+    border-width: 0 35px 35px 0;
+    border-color: transparent #ffffff transparent transparent;
+}
+
+.uts-right-top .uts-triangle {
+    left: 0;
+    bottom: -30px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 35px 35px 0 0;
+    border-color: #ffffff transparent transparent transparent;
+
+}
+
+.uts-left {
+    top: 15px;
+}
+.uts-left .uts-triangle {
+    right: -30px;
+    top: 0;
+    border-width: 35px 35px 0 0;
+    border-color: #ffffff transparent transparent transparent;
+}
+
+.uts-left-top .uts-triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 35px 35px 0;
+    border-color: transparent #ffffff transparent transparent;
+    bottom: -30px;
+    right: 0;
+}
+
+
+.uts-middle-top {
+    left: 15px;
+}
+.uts-middle-top .uts-triangle {
+    bottom: -30px;
+    left: calc(50% - 15px);
+    border-width: 30px 15px 0 15px;
+    border-color: #ffffff transparent transparent transparent;
+}
+.uts-middle-bottom {}
+.uts-middle-bottom .uts-triangle {
+    top: -30px;
+    left: calc(50% - 15px);
+    border-width: 0 15px 30px 15px;
+    border-color: transparent transparent #ffffff transparent;
+}
+.uts-float {
+    left: 50%;
+    top: 50%;
+}
+.uts-float .uts-triangle {
+    display: none;
+}
+
+/* Radomir */
+
+.uts-clicker:after {
+    box-shadow: inset 0 0 0 35px rgba(111, 148, 182, 0);
+}
+.uts-clicker.uts-clicker--click:after {
+    -webkit-animation: anim-effect-radomir 0.5s ease-out forwards;
+    animation: anim-effect-radomir 0.5s ease-out forwards;
+}
+.uts-clicker:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -35px 0 0 -35px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    content: '';
+    opacity: 0;
+    pointer-events: none;
+}
+@-webkit-keyframes anim-effect-radomir {
+    0% {
+        opacity: 1;
+        -webkit-transform: scale3d(0.4, 0.4, 1);
+        transform: scale3d(0.4, 0.4, 1);
+    }
+    80% {
+        box-shadow: inset 0 0 0 2px rgba(111, 148, 182, 0.8);
+        opacity: 0.1;
+    }
+    100% {
+        box-shadow: inset 0 0 0 2px rgba(111, 148, 182, 0.8);
+        opacity: 0;
+        -webkit-transform: scale3d(1.2, 1.2, 1);
+        transform: scale3d(1.2, 1.2, 1);
+    }
+}
+@keyframes anim-effect-radomir {
+    0% {
+        opacity: 1;
+        -webkit-transform: scale3d(0.4, 0.4, 1);
+        transform: scale3d(0.4, 0.4, 1);
+    }
+    80% {
+        box-shadow: inset 0 0 0 2px rgba(111, 148, 182, 0.8);
+        opacity: 0.1;
+    }
+    100% {
+        box-shadow: inset 0 0 0 2px rgba(111, 148, 182, 0.8);
+        opacity: 0;
+        -webkit-transform: scale3d(1.2, 1.2, 1);
+        transform: scale3d(1.2, 1.2, 1);
+    }
+}
+.uts-spinner-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+.uts-spinner-circles-wrapper {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    float: left;
+}
+.uts-spinner-message-wrapper {
+    margin: 0;
+    padding: 5px 14px;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: inherit;
+    float: left;
+    position: relative;
+    color: white;
+    font-size: 21px;
+    font-weight: bold;
+    text-shadow: 0px 0px 3px #666;
+    -webkit-transition: opacity 0.3s ease-out;
+    -moz-transition: opacity 0.3s ease-out;
+    -ms-transition: opacity 0.3s ease-out;
+    -o-transition: opacity 0.3s ease-out;
+    transition: opacity 0.3s ease-out;
+    opacity: 0;
+}
+
+.uts-spinner-bounce1, .uts-spinner-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #ffffff;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+}
+.uts-spinner-bounce2 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+@-webkit-keyframes sk-bounce {
+    0%, 100% {
+        -webkit-transform: scale(0.0)
+    }
+    50% {
+        -webkit-transform: scale(1.0)
+    }
+}
+@keyframes sk-bounce {
+    0%, 100% {
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    }
+    50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
+}
