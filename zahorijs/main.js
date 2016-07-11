@@ -35,7 +35,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
         var url = tabs[0].url,
             _effectiveServer = '',
             _localServer = 'http://localhost:8080/',
-            _bucketServer = 'https://storage.googleapis.com/bbva-front.appspot.com/bbva.usertour/' + USERTOUR_VERSION,
+            _bucketServer = 'https://storage.googleapis.com/bbva-front.appspot.com/zahorijs/' + USERTOUR_VERSION,
             _nocache = new Date().getTime(),
             _version = "";
 

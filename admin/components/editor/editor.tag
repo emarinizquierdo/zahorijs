@@ -8,8 +8,8 @@
   <script>
 
       //Models
-      this.tours = bbva.usertour.editor.tours;
-      this.steps = bbva.usertour.editor.steps;
+      this.tours = zahorijs.editor.tours;
+      this.steps = zahorijs.editor.steps;
 
       this.on('mount', function(){
 

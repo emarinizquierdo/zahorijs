@@ -49,8 +49,8 @@
       var utils = require('../../services/utils');
 
       //Models
-      var tours = bbva.usertour.editor.tours;
-      var steps = bbva.usertour.editor.steps;
+      var tours = zahorijs.editor.tours;
+      var steps = zahorijs.editor.steps;
 
       var modalEditor,
           tourManager;
@@ -62,7 +62,7 @@
       this.importingTour = false;
       this.isEditingTour = false;
       this.isConfiguratingEditor = false;
-      this.showConfigButton = false;
+      this.showConfigButton = true;
 
       /* Revealing Methods */
       this.play = play.bind(this);
@@ -90,20 +90,20 @@
 
         modalEditor = this.parent.tags['modal-editor'];
         tourManager = this.tags['tour-manager'];
-        checkIfIsIntranet.call(this);
+
       }
 
       function play(){
-          if(bbva && bbva.usertour && bbva.usertour.tour){
-            bbva.usertour.configure({header : this.tours.activeTour.header});
-            bbva.usertour.tour.start(steps.data);
+          if(zahorijs && zahorijs.tour){
+            zahorijs.configure({header : this.tours.activeTour.header});
+            zahorijs.tour.start(steps.data);
           }
       }
 
       function playOnlyOne( e ){
-          if(bbva && bbva.usertour && bbva.usertour.tour){
-              bbva.usertour.configure({header : this.tours.activeTour.header});
-              bbva.usertour.tour.start([steps.data[e.item.i]]);
+          if(zahorijs && zahorijs.tour){
+              zahorijs.configure({header : this.tours.activeTour.header});
+              zahorijs.tour.start([steps.data[e.item.i]]);
           }
       }
 
@@ -195,12 +195,6 @@
       function configureEditor( configure ){
           this.isConfiguratingEditor = configure;
           tourManager.configureEditor(configure);
-      }
-
-      function checkIfIsIntranet(){
-          if(location.hostname.indexOf('bbva-intranet') >= 0 || location.hostname.indexOf('localhost') >= 0){
-              this.showConfigButton = true;
-          }
       }
 
       function stopRecord(){

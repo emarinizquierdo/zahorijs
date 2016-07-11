@@ -20,9 +20,12 @@ module.exports = function(router) {
         .get(StepsCtrl.findById);
 
     /* Tour REST */
-    router.route('/tours/:apikey/:app')
-        .get(ToursCtrl.findAllTours)
+
+    router.route('/tours')
         .post(ToursCtrl.addTours);
+
+    router.route('/tours/:apikey/:id')
+        .get(ToursCtrl.findById);
 
     return router;
 

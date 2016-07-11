@@ -37,5 +37,5 @@ $on(window, 'load', function() {
 $on(window, 'hashchange', setView)
 
 
-window.usertour = window.usertour || {};
-window.usertour = new Core();
+window.zahorijs = window.zahorijs || {};
+window.zahorijs = new Core();

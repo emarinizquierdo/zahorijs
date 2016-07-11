@@ -11,19 +11,15 @@
             showall: true
         };
 
-        if(pOptions && pOptions.appID){
-          params.app = pOptions.appID;
-        }
+        var url = properties.url[utils.environment().env].tour + "/" + pOptions.apiKey + "/" + pOptions.id;
 
-        var queryString = "?filters=" + encodeURIComponent(JSON.stringify(params));
-
-        request.get(properties.url[utils.environment().env].tour + queryString)
+        request.get(url)
             .end(callback);
 
     };
 
     exports.save = function(pTour, callback) {
-debugger;
+
         request.post(properties.url[utils.environment().env].tour)
             .send(pTour)
             .end(callback);

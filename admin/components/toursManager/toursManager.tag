@@ -18,18 +18,18 @@
             <label>Title (en_US)</label>
             <input id="en_US" placeholder="Give me a title" type="text" class="uts form-control" onkeyup="{readTitles}" value="{tours.activeTour.name.en_US}">
             <p></p>
-            <label>Tour Id</label>
-            <input id="tourId" placeholder="Fix header height in pixels" type="text" class="uts form-control" onkeyup="{readAppId}" value="{tours.activeTour.id}">
-            <p></p>
             <i class="fa fa-ban" onclick="{hideEditTour.bind(this, true)}" > Cancel</i>
-            <i class="fa fa-check" onclick="{saveTour}" if="{tours.activeTour.name.es_ES && tours.activeTour.name.en_US && tours.activeTour.id}" > Accept</i>
+            <i class="fa fa-check" onclick="{saveTour}" if="{tours.activeTour.name.es_ES && tours.activeTour.name.en_US}" > Accept</i>
         </div>
       </div>
       <div if="{configuratingEditor}" class="uts-tour-editor-wrapper">
 
         <div>
             <label>App ID</label>
-            <input id="api_key" placeholder="dev-bbva-intranet" type="text" class="uts form-control" value="{editor.apiKey}">
+            <input id="api_key" placeholder="API KEY" type="text" class="uts form-control" value="{editor.apiKey}">
+            <p></p>
+            <label>App ID</label>
+            <input id="app_id" placeholder="App ID" type="text" class="uts form-control" value="{editor.id}">
             <p></p>
             <i class="fa fa-ban" onclick="{configureEditor.bind(this, false, false)}" > Cancel</i>
             <i class="fa fa-check" onclick="{setApiKey}" > Accept</i>
@@ -44,8 +44,8 @@
       var tour = require('../../services/tour');
 
       //Models
-      var tours = bbva.usertour.editor.tours;
-      var steps = bbva.usertour.editor.steps;
+      var tours = zahorijs.editor.tours;
+      var steps = zahorijs.editor.steps;
 
       /* Private Variables */
       var tourInfoBackup,
@@ -65,7 +65,6 @@
       this.hideEditTour = hideEditTour.bind(this);
       this.configureEditor = configureEditor.bind(this);
       this.readTitles = readTitles.bind(this);
-      this.readAppId = readAppId.bind(this);
       this.saveTour = saveTour.bind(this);
       this.readApiKey = readApiKey.bind(this);
       this.setApiKey = setApiKey.bind(this);
@@ -83,13 +82,14 @@
         }.bind(this));
 
         readApiKey.call(this);
-        this.tours.trigger('load', {appID : this.editor.appID});
+        this.tours.trigger('load', {apiKey : this.editor.apiKey, id : this.editor.id});
 
       }
 
       function readApiKey(){
         // Store
         this.editor.apiKey = localStorage.getItem("zahorijs.editor.apiKey");
+        this.editor.id = localStorage.getItem("zahorijs.editor.id");
 
       }
 
@@ -104,9 +104,13 @@
         this.tours.activeTour.name = this.tours.activeTour.name || {};
         this.tours.activeTour.apiKey = this.editor.apiKey;
 
+        this.editor.id = this.app_id.value;
+        this.tours.activeTour.id = this.editor.id;
+
         // Store
         localStorage.setItem("zahorijs.editor.apiKey", this.api_key.value);
-        this.tours.trigger('load', {apiKey : this.api_key.value});
+        localStorage.setItem("zahorijs.editor.id", this.app_id.value);
+        this.tours.trigger('load', {apiKey : this.editor.apiKey, id : this.editor.id});
         configureEditor.call(this, true, true);
       }
 
@@ -177,12 +181,6 @@
           this.tours.activeTour.name[event.target.id] = event.target.value;
       }
 
-      function readAppId( event ){
-
-          this.tours.activeTour.id = event.target.value;
-
-      }
-
       function checkIsNumber(evt){
 
           var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -198,7 +196,7 @@
 
       function saveTour(){
           hideEditTour.call(this);
-          this.tours.saveTour({apiKey : this.editor.apiKey});
+          this.tours.saveTour({apiKey : this.editor.apiKey, id : this.editor.id});
       }
 
     </script>

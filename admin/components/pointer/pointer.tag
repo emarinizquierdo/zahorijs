@@ -5,7 +5,7 @@
         var utils = require('../../services/utils');
 
         //Models
-        var tours = bbva.usertour.editor.tours;
+        var tours = zahorijs.editor.tours;
 
         /* Constants */
         var CONTEXT_UTS_HIGHLIGHT_CLASS = "uts-highlight";

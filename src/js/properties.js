@@ -22,7 +22,7 @@ export default {
     },
 
     events : {
-        LANG_CHANGED: 'bbva.usertours.langChanged'
+        LANG_CHANGED: 'zahorijss.langChanged'
     }
 
 }

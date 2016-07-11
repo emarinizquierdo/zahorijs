@@ -19,9 +19,10 @@ exports.findAllTours = function(req, res) {
 //GET - Return a Tours with specified ID
 exports.findById = function(req, res) {
 
-    Tours.find({apiKey : req.params.apiKey, id : req.params.id }, function(err, tour) {
+    Tours.findOne({ apiKey: req.params.apikey, id: req.params.id }, function(err, tour) {
         if (err) return res.send(500, err.message);
 
+        console.log('GET /tours/' + req.params.apikey);
         console.log('GET /tours/' + req.params.id);
         res.status(200).jsonp(tour);
     });
@@ -34,16 +35,36 @@ exports.addTours = function(req, res) {
     console.log('POST');
     console.log(req.body);
 
-    var tour = new Tours({
-        apiKey : req.params.apiKey,
-        id : req.params.id,
-        name: req.body.name,
-        steps: req.body.steps,
-        published: req.body.published
-    });
+    if (req.body._id) {
 
-    tour.save(function(err, tour) {
-        if (err) return res.status(500).send(err.message);
-        res.status(200).jsonp(tour);
-    });
+        Tours.findById(req.body._id, function(err, tour) {
+
+            tour.apiKey = req.body.apiKey;
+            tour.id = req.body.id;
+            tour.name = req.body.name;
+            tour.steps = req.body.steps;
+            tour.published = req.body.published;
+
+            tour.save(function(err, tour) {
+                if (err) return res.status(500).send(err.message);
+                res.status(200).jsonp(tour);
+            });
+        });
+
+    } else {
+
+        var tour = new Tours({
+            apiKey: req.body.apiKey,
+            id: req.body.id,
+            name: req.body.name,
+            steps: req.body.steps,
+            published: req.body.published
+        });
+
+        tour.save(function(err, tour) {
+            if (err) return res.status(500).send(err.message);
+            res.status(200).jsonp(tour);
+        });
+    }
+
 };

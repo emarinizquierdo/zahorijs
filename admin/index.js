@@ -4,10 +4,10 @@
     require('./styles/main.css');
     var Editor = require('./components/editor');
 
-    $window.bbva = $window.bbva || {};
-    $window.bbva.usertour = $window.bbva.usertour || {};
+    $window.zahorijs = $window.zahorijs || {};
+    $window.zahorijs = $window.zahorijs || {};
 
-    $window.bbva.usertour.editor = new Editor();
-    $window.bbva.usertour.editor.init();
+    $window.zahorijs.editor = new Editor();
+    $window.zahorijs.editor.init();
 
 })(window);

@@ -112,8 +112,8 @@
   var icons = require('../../services/icons');
 
   //Models
-  var tours = bbva.usertour.editor.tours;
-  var steps = bbva.usertour.editor.steps;
+  var tours = zahorijs.editor.tours;
+  var steps = zahorijs.editor.steps;
 
   /* Constants */
   var OPTIONS_DESCRIPTION_ES_ES_EDITOR = {

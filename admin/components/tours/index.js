@@ -35,8 +35,8 @@
 
         tour.get(pOptions, function(err, data) {
 
-            if (data) {
-                this.activeTour = data.body.data.list[0];
+            if (data && data.body) {
+                this.activeTour = data.body;
                 this.trigger('updateTours', this.activeTour.steps);
             }else{
                 this.activeTour = null;
@@ -83,19 +83,8 @@
 
         loading.call(this, true);
         
-        if(location.hostname.indexOf('localhost') < 0){
-
-            var GAE_HOSTNAME_PATTERN = /(dev-|au-|)(bbva-)(([^.]+))?.appspot\.com/;
-            var _hostnameParts = location.hostname.match(GAE_HOSTNAME_PATTERN);
-            var _hostnameEnvironment = (_hostnameParts[1] == '-') ? '' : (_hostnameParts[1] == 'au-' ) ? 'au-' : 'dev-';
-            var _hostnameApp = _hostnameParts[2] + _hostnameParts[3];
-            this.activeTour.app = this.activeTour.app || pOptions.appID || _hostnameEnvironment + _hostnameApp;
-
-        }else{
-
-            this.activeTour.app = this.activeTour.app || pOptions.appID;
-
-        }
+        this.activeTour.apiKey = this.activeTour.apiKey || pOptions.apiKey;
+        this.activeTour.id = this.activeTour.id || pOptions.id;
 
         this.activeTour.steps = this.activeTour.steps || [];
         this.activeTour.stepIdList = this.activeTour.stepIdList || [];
@@ -107,9 +96,9 @@
 
         tour.save(this.activeTour, function(err, data) {
 
-          if (data) {
+          if (data && data.body) {
 
-              this.activeTour = data;
+              this.activeTour = data.body;
               this.trigger('updateTours', this.activeTour.steps);
               loading.call(this, false);
 
