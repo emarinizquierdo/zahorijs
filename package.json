@@ -20,10 +20,6 @@
     "chai": "3.5.0",
     "cpy-cli": "1.0.1",
     "css-loader": "0.23.1",
-    "html-loader": "^0.4.0",
-    "riot": "^2.3.15",
-    "riotjs-loader": "^1.2.0",
-    "style-loader": "0.13.1",
     "eslint": "2.13.0",
     "eslint-config-kentcdodds": "6.2.1",
     "eslint-import-resolver-webpack": "0.3.0",
@@ -31,6 +27,7 @@
     "eslint-plugin-import": "1.8.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "ghooks": "1.2.4",
+    "html-loader": "^0.4.0",
     "istanbul": "0.4.3",
     "karma": "0.13.22",
     "karma-chai": "0.1.0",
@@ -42,6 +39,9 @@
     "npm-run-all": "2.2.0",
     "opt-cli": "1.4.2",
     "rimraf": "2.5.2",
+    "riot": "^2.3.15",
+    "riotjs-loader": "^1.2.0",
+    "style-loader": "0.13.1",
     "superagent": "^2.0.0",
     "webpack": "2.1.0-beta.13",
     "webpack-dev-server": "2.0.0-beta",
@@ -60,7 +60,7 @@
     "validate-webpack:dev": "webpack-validator webpack.config.js --env.dev",
     "validate-webpack:prod": "webpack-validator webpack.config.js --env.prod",
     "clean-dist": "rimraf dist",
-    "copy-files": "cpy src/index.html src/favicon.ico dist && cpy src/lib/* dist/lib",
+    "copy-files": "cpy src/index.html src/favicon.ico dist && cpy src/app/lib/* dist/app/lib",
     "clean-and-copy": "npm run clean-dist && npm run copy-files",
     "prestart": "npm run clean-and-copy",
     "start": "webpack-dev-server --hot --env.dev --content-base dist && copy-files",
@@ -70,6 +70,7 @@
     "build": "webpack --env.dev",
     "build:prod": "webpack --env.prod -p",
     "lint": "eslint .",
-    "setup": "npm install && npm run validate"
+    "setup": "npm install && npm run validate",
+    "server": "node server/app.js"
   }
 }

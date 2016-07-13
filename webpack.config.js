@@ -55,9 +55,12 @@ module.exports = env => {
 
     } else {
         return {
-            entry: './js/app.js',
+            entry: {
+              library : './library/js/app.js',
+              app : './app/js/app.js'
+            },
             output: {
-                filename: 'zahorijs.js',
+                filename: '[name]/app.js',
                 path: resolve(__dirname, 'dist'),
                 pathinfo: !env.prod,
             },
