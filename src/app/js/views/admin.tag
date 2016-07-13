@@ -1,6 +1,10 @@
 <admin>
 <div>
-
+  <div class="row">
+          <div class="col s12 m6">
+<user-card></user-card>
+</div>
+</div>
 <div class="row">
     <form class="col s12">
       <div class="row">
@@ -33,8 +37,8 @@
       </div>
     </form>
   </div>
-        
-        
+
+
 <table>
         <thead>
           <tr>
@@ -63,4 +67,10 @@
         </tbody>
       </table>
 </div>
+
+  <script>
+
+    import userCard from '../components/user-card.tag'
+
+  </script>
 </admin>

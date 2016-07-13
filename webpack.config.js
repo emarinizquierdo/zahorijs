@@ -78,6 +78,10 @@ module.exports = env => {
             module: {
                 loaders: [
                     { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
+                    {
+                      test: /\.scss$/,
+                      loaders: ["style", "css", "sass"]
+                    },
                     { test: /\.css$/, loader: 'style!css' }, {
                         test: /\.html$/,
                         loader: "html"
