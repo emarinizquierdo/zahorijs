@@ -62,6 +62,7 @@ export default Core;
 
     }
 
+
     /**
      * Method that restart a tour bringing from back a tour.
      * This method brings even a readed tour.
