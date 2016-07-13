@@ -1,11 +1,21 @@
-var StepsCtrl = require('../controllers/steps'),
-	ToursCtrl = require('../controllers/tours');
+var UserCtrl = require('../controllers/users'),
+    StepsCtrl = require('../controllers/steps'),
+    ToursCtrl = require('../controllers/tours'),
+    passport = require('passport');
 
 module.exports = function(router) {
 
     router.get('/', function(req, res) {
         res.send("Hello World!");
     });
+
+    /* User REST */
+
+    router.route('/user')
+        .post(UserCtrl.addUser);
+
+    router.route('/user/:email')
+        .get(UserCtrl.findById);
 
     /* Steps REST*/
 

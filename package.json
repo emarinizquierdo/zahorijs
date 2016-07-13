@@ -3,11 +3,12 @@
   "dependencies": {
     "body-parser": "^1.5.1",
     "express": "^4.7.1",
+    "express-session": "^1.14.0",
     "method-override": "^2.1.2",
     "mongoose": "~3.6.11",
-    "riot-router": "^0.7.3",
-    "todomvc-app-css": "2.0.6",
-    "todomvc-common": "1.0.2"
+    "passport": "^0.3.2",
+    "passport-google-oauth20": "^1.0.0",
+    "riot-router": "^0.7.3"
   },
   "devDependencies": {
     "babel": "6.5.2",

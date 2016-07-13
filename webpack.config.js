@@ -102,6 +102,9 @@ module.exports = env => {
                         pathRewrite: {
                             '^/api': ''
                         }
+                    },
+                    '/auth': {
+                        target: 'http://localhost:3000'
                     }
                 }
             }

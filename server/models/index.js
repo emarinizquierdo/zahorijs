@@ -37,5 +37,12 @@ var Tours = new Schema({
     published: Boolean
 });
 
+var Users = new Schema({
+    email : String,
+    apiKey : String,
+    apps : []
+});
+
 module.exports = mongoose.model('Steps', Steps);
 module.exports = mongoose.model('Tours', Tours);
+module.exports = mongoose.model('Users', Users);

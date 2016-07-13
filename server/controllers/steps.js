@@ -5,6 +5,7 @@ var Steps = mongoose.model('Steps');
 //GET - Return all Steps in the DB
 exports.findAllSteps = function(req, res) {
 
+console.log(req.user);
     Steps.find(function(err, steps) {
 
         if (err) res.send(500, err.message);
@@ -61,7 +62,7 @@ exports.addMultipleSteps = function(req, res) {
     console.log(req.body);
 
 	Steps.collection.insert(req.body.steps, function callback(err, insertedDocs) {
-    // Here I use KrisKowal's Q (https://github.com/kriskowal/q) to return a promise, 
+    // Here I use KrisKowal's Q (https://github.com/kriskowal/q) to return a promise,
     // so that the caller of this function can act upon its success or failure
     if (!err)
       res.status(200).jsonp(insertedDocs);
