@@ -1,17 +1,27 @@
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var config = require('../config.json');
+var mongoose = require('mongoose');
+var Users = mongoose.model('Users');
 
 module.exports = function(passport, router) {
 
     function extractProfile(profile) {
         var imageUrl = '';
-        console.log(profile);
+        var email = '';
+
         if (profile.photos && profile.photos.length) {
             imageUrl = profile.photos[0].value;
         }
+
+        if (profile.emails && profile.emails.length) {
+            email = profile.emails[0].value;
+            console.log(email);
+        }
+
         return {
             id: profile.id,
             displayName: profile.displayName,
+            email: email,
             image: imageUrl
         };
     }
@@ -31,7 +41,29 @@ module.exports = function(passport, router) {
     }, function(accessToken, refreshToken, profile, cb) {
         // Extract the minimal profile information we need from the profile object
         // provided by Google
-        cb(null, extractProfile(profile));
+
+        var _profile = extractProfile(profile);
+
+        Users.findOne({
+            email: _profile.email
+        }, function(err, user) {
+
+            if (!user) {
+
+                var user = new Users({
+                    email: _profile.email
+                });
+
+                user.save(function(err, user) {
+                    cb(null, _profile);
+                });
+
+            } else {
+                cb(null, _profile);
+            }
+
+        });
+
     }));
 
     passport.serializeUser(function(user, cb) {
@@ -73,20 +105,11 @@ module.exports = function(passport, router) {
         function(req, res) {
             var redirect = req.session.oauth2return || '/';
             delete req.session.oauth2return;
+
             res.redirect(redirect);
+
         }
     );
-
-    // Middleware that requires the user to be logged in. If the user is not logged
-    // in, it will redirect the user to authorize the application and then return
-    // them to the original URL they requested.
-    function authRequired(req, res, next) {
-        if (!req.user) {
-            req.session.oauth2return = req.originalUrl;
-            return res.redirect('/auth/login');
-        }
-        next();
-    }
 
     // Middleware that exposes the user's profile as well as login/logout URLs to
     // any templates. These are available as `profile`, `login`, and `logout`.

@@ -11,7 +11,14 @@
         var self = this;
         var currentPage = null;
 
-        var r = riot.route(goTo);
+        riot.route('/auth/*', auth);
+        riot.route('*', goTo);
+
+        function auth(path) {
+
+          window.location.href = '/auth/' + path;
+
+        }
 
         function goTo(path) {
 
@@ -21,8 +28,6 @@
 
             currentPage = riot.mount('div#content', 'zjs-' + path)[0];
         }
-
-        goTo('home');
 
     </script>
 

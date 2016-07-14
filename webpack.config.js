@@ -99,9 +99,6 @@ module.exports = env => {
                 proxy: {
                     '/api': {
                         target: 'http://localhost:3000',
-                        pathRewrite: {
-                            '^/api': ''
-                        }
                     },
                     '/auth': {
                         target: 'http://localhost:3000'

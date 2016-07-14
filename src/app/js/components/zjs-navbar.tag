@@ -25,6 +25,9 @@
             }, {
                 name: "Login",
                 url: "login"
+            }, {
+                name: "Logout",
+                url: "auth/logout"
             }
         ];
 

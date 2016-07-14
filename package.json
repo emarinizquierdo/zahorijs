@@ -63,7 +63,7 @@
     "validate-webpack:dev": "webpack-validator webpack.config.js --env.dev",
     "validate-webpack:prod": "webpack-validator webpack.config.js --env.prod",
     "clean-dist": "rimraf dist",
-    "copy-files": "cpy src/index.html src/favicon.ico dist && cpy src/app/lib/* dist/app/lib",
+    "copy-files": "cpy src/index.html src/favicon.ico dist",
     "clean-and-copy": "npm run clean-dist && npm run copy-files",
     "prestart": "npm run clean-and-copy",
     "start": "webpack-dev-server --hot --env.dev --content-base dist && copy-files",

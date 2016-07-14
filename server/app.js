@@ -45,7 +45,7 @@ mongoose.connect('mongodb://localhost/steps', function(err, res) {
 // them to the original URL they requested.
 function authRequired(req, res, next) {
   console.log(req.path);
-    if (req.user || req.path === '/auth/login' || req.path === '/auth/google/callback'){
+    if (req.user || req.path === '/auth/login' || req.path === '/auth/logout' || req.path === '/auth/google/callback'){
       next();
       return;
     }
