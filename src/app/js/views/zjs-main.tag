@@ -16,6 +16,10 @@
 
         function auth(path) {
 
+          if(path == "logout"){
+            window._shared.zsjUserPhantom.trigger('logout');
+          }
+
           window.location.href = '/auth/' + path;
 
         }

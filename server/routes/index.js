@@ -5,7 +5,7 @@ var UserCtrl = require('../controllers/users'),
 
 module.exports = function(router) {
 
-	var _base = '/api';
+    var _base = '/api';
 
     router.get(_base + '/', function(req, res) {
         res.send("Hello World!");
@@ -18,6 +18,10 @@ module.exports = function(router) {
 
     router.route(_base + '/user/:email')
         .get(UserCtrl.findById);
+
+    router.get(_base + '/me', function(req, res) {
+        res.send(req.user);
+    });
 
     /* Steps REST*/
 
