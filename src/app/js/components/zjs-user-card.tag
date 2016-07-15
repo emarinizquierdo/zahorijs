@@ -6,23 +6,22 @@
             <div class="row">
                 <form class="col s12">
                     <div class="row">
-                        <div class="input-field col s12">
-                            <input id="email" type="email" class="validate">
-                            <label for="email">Email</label>
-                        </div>
-                    </div>
-                    <div class="row valign-wrapper">
-                        <div class="input-field col s6 valign">
-                            <a class="waves-effect waves-light btn" onclick="{generateApiKey}">Generate API KEY</a>
-                        </div>
-                        <div class="col s6 valign">
-                            <span class="valign">{apiKey}</span>
-                        </div>
+
+                        <ul class="collection with-header">
+                            <li class="collection-header">
+                                <h6>{user.email}</h6>
+                            </li>
+                            <li class="collection-item">
+                                <a class="waves-effect waves-light btn {'red darken-4' : user.apiKey, 'blue' : !user.apiKey}" onclick="{generateApiKey}"><span if="{user.apiKey}">Re</span>Generate API KEY</a>
+                            </li>
+                            <li if="{user.apiKey}" class="collection-item grey-text">{user.apiKey}</li>
+                        </ul>
+
                     </div>
                 </form>
             </div>
         </div>
-        <div class="card-action">
+        <div class="card-action" if="{hasToSave}">
             <a class="waves-effect  btn-flat" onclick="{save}">Save</a>
         </div>
     </div>
@@ -32,24 +31,56 @@
         import superagent from 'superagent';
         import properties from '../properties';
 
+        /* Binding */
         var self = this;
-        self.email = "";
-        self.apiKey = "";
+
+        /* Public Variables */
+        this.save = save;
+        this.generateApiKey = generateApiKey;
+        this.user = _shared.zsjUserPhantom.user;
+        this.hasToSave = false;
+
+        /* Initialization */
+        this.on("mount", function (a) {
+            window._shared.zsjUserCard = self;
+        });
+
 
         function save() {
-debugger;
-            superagent.post(properties.services.user).send({email: self.email.value, apiKey: self.apiKey.value}).end(function (err, res) {
+
+            superagent.put(properties.services.user).send({apiKey: self.user.apiKey}).end(function (err, res) {
                 // Calling the end function will send the request
+                if(res && res.body){
+                  _shared.zsjUserPhantom.user = res.body;
+                }
+                self.hasToSave = false;
+                self.update();
             });
 
         }
 
-        function generateApiKey(){
-          self.apiKey = new Date().getTime();
+        function generateApiKey() {
+            self.user.apiKey = generateUUID();
+            self.hasToSave = true;
         }
 
-        this.save = save;
-        this.generateApiKey = generateApiKey;
+        function generateUUID() {
+            var d = new Date().getTime();
+
+            if (window.performance && typeof window.performance.now === "function") {
+                d += performance.now();
+            }
+
+            var uuid = 'KEYxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = (d + Math.random() * 16) % 16 | 0;
+                d = Math.floor(d / 16);
+                return (c == 'x'
+                    ? r
+                    : (r & 0x3 | 0x8)).toString(16);
+            });
+
+            return uuid;
+        }
 
     </script>
 </zjs-user-card>

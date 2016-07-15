@@ -30,6 +30,10 @@
                 currentPage.unmount(true);
             }
 
+            if(path == "admin" && !_shared.zsjUserPhantom.isUserLogged){
+              riot.route("home");
+            }
+
             currentPage = riot.mount('div#content', 'zjs-' + path)[0];
         }
 

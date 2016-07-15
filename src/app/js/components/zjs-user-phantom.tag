@@ -1,11 +1,5 @@
 <zjs-user-phantom>
 
-    <div>
-        <div if="{isUserLogged}">logged</div>
-        <div if="{!isUserLogged}">no logged</div>
-        {user.email}
-    </div>
-
     <script>
 
         import superagent from 'superagent';
@@ -55,7 +49,8 @@
 
         this.on("mount", function(a){
           window._shared.zsjUserPhantom = self;
-        })
+        });
+
     </script>
 
 </zjs-user-phantom>

@@ -5,7 +5,8 @@ var properties = {
 
 properties.services = {
     user: properties.service + '/user',
-    me : properties.service + '/me'
+    me : properties.service + '/me',
+    apps : properties.service + '/apps'
 };
 
 export default properties;

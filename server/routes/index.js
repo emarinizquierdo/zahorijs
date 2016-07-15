@@ -1,4 +1,5 @@
 var UserCtrl = require('../controllers/users'),
+    AppsCtrl = require('../controllers/apps'),
     StepsCtrl = require('../controllers/steps'),
     ToursCtrl = require('../controllers/tours'),
     passport = require('passport');
@@ -14,14 +15,19 @@ module.exports = function(router) {
     /* User REST */
 
     router.route(_base + '/user')
-        .post(UserCtrl.addUser);
+        .put(UserCtrl.updateUser);
 
     router.route(_base + '/user/:email')
         .get(UserCtrl.findById);
 
-    router.get(_base + '/me', function(req, res) {
-        res.send(req.user);
-    });
+    router.get(_base + '/me', UserCtrl.me);
+
+    /* Apps REST */
+
+    router.route(_base + '/apps')
+        .get(AppsCtrl.findAllApps)
+				.put(AppsCtrl.updateApps);
+
 
     /* Steps REST*/
 
