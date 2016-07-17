@@ -20,7 +20,7 @@ var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var mongodbHost = process.env.OPENSHIFT_MONGODB_DB_HOST || 'localhost';
 var mongodbPort = process.env.OPENSHIFT_MONGODB_DB_PORT || 27017;
-var mongo_url = (process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost');
+var mongo_url = (process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost') + process.env.OPENSHIFT_APP_NAME;
 
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/../dist/index.html'));
