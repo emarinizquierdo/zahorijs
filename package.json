@@ -75,5 +75,6 @@
     "lint": "eslint .",
     "setup": "npm install && npm run validate",
     "server": "node server/app.js"
-  }
+  },
+  "main": "/server/app.js"
 }
