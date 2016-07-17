@@ -57,8 +57,9 @@ exports.addTours = function(req, res) {
                 for (var i = 0; i < user.apps.length; i++) {
                     console.log('el appid es: ' + user.apps[i].appId + " y el otro es " + req.body.id);
                     if (user.apps[i].appId == req.body.id) {
-                        console.log("aqui entra");
+
                         if (req.body._id) {
+                          console.log("aqui entra");
                             Tours.findById(req.body._id, function(err, tour) {
 
                                 tour.apiKey = req.body.apiKey;
@@ -87,12 +88,18 @@ exports.addTours = function(req, res) {
                                 if (err) return res.status(500).send(err.message);
                                 return res.status(200).jsonp(tour);
                             });
+
+
                         }
+
+                        return;
                     }
                 }
-                            res.status(404).send('not found');
+
             }
 
+            res.status(404).send('not found');
+            
         });
 
     } else {

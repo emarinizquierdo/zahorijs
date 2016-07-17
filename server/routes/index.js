@@ -8,10 +8,6 @@ module.exports = function(router) {
 
     var _base = '/api';
 
-    router.get(_base + '/', function(req, res) {
-        res.send("Hello World!");
-    });
-
     /* User REST */
 
     router.route(_base + '/user')

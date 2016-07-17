@@ -10,23 +10,34 @@ var express = require("express"),
     passport = require('passport'),
     auth = require('./oauth/oauth2.js')(passport, router),
     session = require('express-session'),
-    routes = require('./routes')(router);
-
+    routes = require('./routes')(router),
+    path = require('path');
 
 
 /* Express configuration */
-    app.use(bodyParser.urlencoded({
-        extended: false
-    }));
-    app.use(bodyParser.json());
-    app.use(session({ secret: 'keyboard cat', resave: true,
-    saveUninitialized: true }));
-    app.use(passport.initialize());
-    app.use(passport.session());
-    app.use(methodOverride());
-    app.use(authRequired);
-    app.use(routes);
 
+
+
+
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/../dist/index.html'));
+});
+app.use(express.static(path.join(__dirname + '/../dist')));
+//app.use(express.static(__dirname + '/../dist'));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(bodyParser.json());
+app.use(session({
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(methodOverride());
+app.use(authRequired);
+app.use(routes);
 
 
 /* MongoDB connect */
@@ -44,10 +55,10 @@ mongoose.connect('mongodb://localhost/steps', function(err, res) {
 // in, it will redirect the user to authorize the application and then return
 // them to the original URL they requested.
 function authRequired(req, res, next) {
-  console.log(req.path);
-    if (req.user || req.path === '/api/me' || req.path === '/auth/login' || req.path === '/auth/logout' || req.path === '/auth/google/callback'){
-      next();
-      return;
+    console.log(req.path);
+    if (req.user || req.path === '/api/me' || req.path === '/auth/login' || req.path === '/auth/logout' || req.path === '/auth/google/callback') {
+        next();
+        return;
     }
 
     if (!req.user) {
