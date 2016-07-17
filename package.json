@@ -60,7 +60,7 @@
     "copy-files": "cpy src/index.html src/favicon.ico dist",
     "clean-and-copy": "npm run clean-dist && npm run copy-files",
     "prestart": "npm run clean-and-copy",
-    "start": "webpack-dev-server --hot --env.dev --content-base dist && copy-files",
+    "start": "node server/app.js",
     "admin": "webpack --env.admin.dev --hot",
     "prebuild": "npm run clean-and-copy",
     "prebuild:prod": "npm run clean-and-copy",
@@ -68,7 +68,8 @@
     "build:prod": "webpack --env.prod -p",
     "lint": "eslint .",
     "setup": "npm install && npm run validate",
-    "server": "node server/app.js"
+    "server": "node server/app.js",
+    "webpack" : "webpack-dev-server --hot --env.dev --content-base dist && copy-files"
   },
-  "main": "/server/app.js"
+  "main": "server/app.js"
 }
