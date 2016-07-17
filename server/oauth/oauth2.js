@@ -105,7 +105,7 @@ module.exports = function(passport, router) {
         function(req, res) {
             var redirect = req.session.oauth2return || '/';
             delete req.session.oauth2return;
-
+console.log("el return es: " + req.session.oauth2return);
             res.redirect(redirect);
 
         }

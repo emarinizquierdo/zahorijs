@@ -58,7 +58,7 @@
     "validate-webpack:prod": "webpack-validator webpack.config.js --env.prod",
     "clean-dist": "rimraf dist",
     "copy-files": "cpy src/index.html src/favicon.ico dist",
-    "clean-and-copy": "npm run clean-dist && npm run copy-files",
+    "clean-and-copy": "npm run copy-files",
     "prestart": "npm run clean-and-copy",
     "start": "node server/app.js",
     "admin": "webpack --env.admin.dev --hot",
@@ -69,7 +69,7 @@
     "lint": "eslint .",
     "setup": "npm install && npm run validate",
     "server": "node server/app.js",
-    "webpack" : "webpack-dev-server --hot --env.dev --content-base dist && copy-files"
+    "webpack" : "npm run clean-and-copy && webpack-dev-server --hot --env.dev --content-base dist && copy-files"
   },
   "main": "server/app.js"
 }

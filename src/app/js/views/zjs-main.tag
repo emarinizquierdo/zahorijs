@@ -1,5 +1,5 @@
 <zjs-main>
-
+    <zjs-navbar></zjs-navbar>
     <div id="content"></div>
 
     <script>
@@ -7,12 +7,14 @@
         import './zjs-home.tag';
         import './zjs-admin.tag';
         import './zjs-login.tag';
+        import '../components/zjs-navbar.tag';
 
         var self = this;
         var currentPage = null;
 
         riot.route('/auth/*', auth);
         riot.route('*', goTo);
+        riot.route('', goTo);
 
         function auth(path) {
 
@@ -30,7 +32,7 @@
                 currentPage.unmount(true);
             }
 
-            if(path == "admin" && !_shared.zsjUserPhantom.isUserLogged){
+            if(!path ||  (path == "admin" && !_shared.zsjUserPhantom.isUserLogged)){
               riot.route("home");
             }
 

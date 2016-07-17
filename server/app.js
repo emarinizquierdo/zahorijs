@@ -17,14 +17,12 @@ var express = require("express"),
 /* Express configuration */
 
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 var mongodbHost = process.env.OPENSHIFT_MONGODB_DB_HOST || 'localhost';
 var mongodbPort = process.env.OPENSHIFT_MONGODB_DB_PORT || 27017;
-var mongo_url = (process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost') + process.env.OPENSHIFT_APP_NAME;
+var mongo_url = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost';
+var mongoApp = process.env.OPENSHIFT_APP_NAME || '/zahorijs';
 
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/../dist/index.html'));
-});
 
 app.use(express.static(path.join(__dirname + '/../dist')));
 
@@ -43,9 +41,12 @@ app.use(methodOverride());
 app.use(authRequired);
 app.use(routes);
 
+app.get('*', function(req, res){
+          res.sendFile(path.join(__dirname + '/../dist/index.html'));
+  });
 
 /* MongoDB connect */
-mongoose.connect(mongo_url, function(err, res) {
+mongoose.connect(mongo_url + mongoApp, function(err, res) {
     if (err) {
         console.log('ERROR: connecting to Database. ' + err);
     }

@@ -1,10 +1,12 @@
 window._shared = {};
 
-import tag from './views/zjs-main.tag';
 import './components/zjs-user-phantom.tag';
-import navbar from './components/zjs-navbar.tag';
+import './views/zjs-main.tag';
 
 riot.route.base('/');
 riot.mount('*');
 riot.route.start(true);
-riot.route('home');
+
+if(location.href.substr(-1) == "#"){
+  window.location.href="/";
+}

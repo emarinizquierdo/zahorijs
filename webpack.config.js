@@ -56,8 +56,8 @@ module.exports = env => {
     } else {
         return {
             entry: {
-              library : './library/js/app.js',
-              app : './app/js/app.js'
+                library: './library/js/app.js',
+                app: './app/js/app.js'
             },
             output: {
                 filename: '[name]/app.js',
@@ -76,20 +76,23 @@ module.exports = env => {
                 })
             ],
             module: {
-                loaders: [
-                    { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
-                    {
-                      test: /\.scss$/,
-                      loaders: ["style", "css", "sass"]
-                    },
-                    { test: /\.css$/, loader: 'style!css' }, {
-                        test: /\.html$/,
-                        loader: "html"
-                    }, {
-                        test: /\.tag$/,
-                        loader: 'riotjs-loader'
-                    }
-                ]
+                loaders: [{
+                    test: /\.js$/,
+                    loader: 'babel',
+                    exclude: /node_modules/
+                }, {
+                    test: /\.scss$/,
+                    loaders: ["style", "css", "sass"]
+                }, {
+                    test: /\.css$/,
+                    loader: 'style!css'
+                }, {
+                    test: /\.html$/,
+                    loader: "html"
+                }, {
+                    test: /\.tag$/,
+                    loader: 'riotjs-loader'
+                }]
             },
             watchOptions: {
                 aggregateTimeout: 300,
@@ -103,6 +106,13 @@ module.exports = env => {
                     '/auth': {
                         target: 'http://localhost:3000'
                     }
+                },
+                historyApiFallback: {
+                    index: '/src/index.html',
+                    rewrites: [{
+                        from: /\//,
+                        to: '/index.html'
+                    }]
                 }
             }
         }
