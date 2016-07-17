@@ -17,6 +17,11 @@ var express = require("express"),
 /* Express configuration */
 
 
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var mongodbHost = process.env.OPENSHIFT_MONGODB_DB_HOST || 'localhost';
+var mongodbPort = process.env.OPENSHIFT_MONGODB_DB_PORT || 27017;
+var mongoUrl = 'mongodb://' + mongodbHost + ':' + mongodbPort + '/zahorijs';
 
 
 app.get('/', function(req, res) {
@@ -41,11 +46,11 @@ app.use(routes);
 
 
 /* MongoDB connect */
-mongoose.connect('mongodb://localhost/steps', function(err, res) {
+mongoose.connect(mongoUrl, function(err, res) {
     if (err) {
         console.log('ERROR: connecting to Database. ' + err);
     }
-    app.listen(3000, function() {
+    app.listen(port, ipaddress, function() {
         console.log("Node server running on http://localhost:3000");
     });
 });
