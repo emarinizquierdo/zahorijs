@@ -16,7 +16,6 @@ var express = require("express"),
 
 /* Express configuration */
 
-
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var mongodbHost = process.env.OPENSHIFT_MONGODB_DB_HOST || 'localhost';
