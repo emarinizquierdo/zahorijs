@@ -16,7 +16,7 @@ var express = require("express"),
 
 /* Express configuration */
 
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var mongodbHost = process.env.OPENSHIFT_MONGODB_DB_HOST || 'localhost';
 var mongodbPort = process.env.OPENSHIFT_MONGODB_DB_PORT || 27017;
@@ -50,7 +50,7 @@ mongoose.connect(mongoUrl, function(err, res) {
         console.log('ERROR: connecting to Database. ' + err);
     }
     app.listen(port, ipaddress, function() {
-        console.log("Node server running on http://localhost:3000");
+        console.log("Node server running on " + ipaddress + ":" + port);
     });
 });
 
