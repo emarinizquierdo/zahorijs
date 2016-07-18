@@ -10,7 +10,7 @@ module.exports = env => {
             entry: './admin/index.js',
             output: {
                 filename: 'zahorijs.editor.js',
-                path: resolve(__dirname, 'dist')
+                path: resolve(__dirname, 'dist/editor')
             },
             plugins: [
                 new webpack.ProvidePlugin({
@@ -110,7 +110,7 @@ module.exports = env => {
                 historyApiFallback: {
                     index: '/src/index.html',
                     rewrites: [{
-                        from: /\//,
+                        from: /^((?!editor).)*$/,
                         to: '/index.html'
                     }]
                 }

@@ -41,6 +41,10 @@
 
     </script>
 
-    <style scoped></style>
+    <style scoped>
+#content{
+  padding-top: 64px;
+}
+    </style>
 
 </zjs-main>

@@ -24,29 +24,7 @@ function tours(properties) {
          */
         function get(callback, pRetrieveReaded) {
 
-            var queryString = "";
-
-            var params = {
-                    userFellowships : true,
-                    published : true
-                };
-
-            if (pRetrieveReaded || properties.app) {
-
-                if(pRetrieveReaded){
-                    params.showall = true;
-                }
-
-                //Add appId only if it is passed as configuration option
-                if(properties.app){
-                    params.app = properties.app;
-                }
-
-            }
-
-            queryString = "?filters=" + encodeURIComponent(JSON.stringify(params));
-
-            request.get(properties.connector[properties.environment] + properties.services.commons.tour + queryString)
+            request.get('/api' +  properties.services.commons.tour + "/" + properties.apiKey + "/" + properties.appId)
                 .end(callback);
 
         };

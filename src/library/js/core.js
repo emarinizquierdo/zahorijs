@@ -36,29 +36,16 @@ export default Core;
      * tour, it runs tour component.
      * @return {NA} NA
      */
-    function init() {
+    function init(options) {
 
-        configuration.inHPD(function() {
+      configuration.effectiveProperties.apiKey = options.apiKey;
+      configuration.effectiveProperties.appId = options.appId;
+      //We have to retrieve only no-readed tours to show the tour in the app
+      tours(configuration.effectiveProperties).get(function(err, data) {
 
-            //We have to retrieve all published readed and no-readed tours to
-            //set action button in HPD
-            tours(configuration.effectiveProperties).get(function(err, data) {
+          onGet.call(this, data.body);
 
-                //Show only HPD action button if there are tours
-                if(data && data.body && data.body.data && data.body.data.list && ( data.body.data.list.length > 0 )){
-                    setHPDHelp.call(this);
-                }
-
-            }.bind(this), true);
-
-            //We have to retrieve only no-readed tours to show the tour in the app
-            tours(configuration.effectiveProperties).get(function(err, data) {
-
-                onGet.call(this, data);
-
-            }.bind(this));
-
-        }.bind(this));
+      }.bind(this));
 
     }
 
@@ -70,14 +57,12 @@ export default Core;
      */
     function restart() {
 
-        //tours(configuration.effectiveProperties).get(function(err, data) {
+        tours(configuration.effectiveProperties).get(function(err, data) {
 
-            var data = {};
-            data.steps = [{"title":{"es_ES":"primer paso","en_US":"primer paso"},"intro":{"es_ES":"","en_US":""},"doClick":false,"typewrite":false,"typewriteValue":"","icon":{},"enableCustomButton":false,"customButton":{"es_ES":"","en_US":""},"urlCustomButton":"","selector":"body:nth-child(2) > section:nth-child(1) > header:nth-child(1) > input:nth-child(2)","id":"1468151946485"},{"title":{"es_ES":"segundo paso","en_US":"segundo paso"},"intro":{"es_ES":"","en_US":""},"doClick":false,"typewrite":false,"typewriteValue":"","icon":{},"enableCustomButton":false,"customButton":{"es_ES":"","en_US":""},"urlCustomButton":"","selector":"body:nth-child(2) > footer:nth-child(2)","id":"1468151955112"},{"title":{"es_ES":"tercer paso","en_US":"tercer paso"},"intro":{"es_ES":"","en_US":""},"doClick":false,"typewrite":false,"typewriteValue":"","icon":{},"enableCustomButton":false,"customButton":{"es_ES":"","en_US":""},"urlCustomButton":"","selector":"body:nth-child(2) > section:nth-child(1) > header:nth-child(1) > h1:nth-child(1)","id":"1468151964854"}];
             this.tour.stop();
             onGet.call(this, data, true);
 
-        //}.bind(this), true);
+        }.bind(this), true);
 
     }
 
@@ -90,7 +75,7 @@ export default Core;
     function onGet(pData, forcedByUser) {
 
         window.focus();
-        
+
         if (pData && pData.steps) {
 
             this.tour.start(pData.steps);
