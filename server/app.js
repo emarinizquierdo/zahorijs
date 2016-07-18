@@ -38,7 +38,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride());
-app.use(authRequired);
 app.use(routes);
 
 app.get('*', function(req, res){

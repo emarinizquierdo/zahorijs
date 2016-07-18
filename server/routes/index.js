@@ -10,11 +10,9 @@ module.exports = function(router) {
 
     /* User REST */
 
-    router.route(_base + '/user')
-        .put(UserCtrl.updateUser);
+    router.put(_base + '/user', authRequired, UserCtrl.updateUser);
 
-    router.route(_base + '/user/:email')
-        .get(UserCtrl.findById);
+    router.route(_base + '/user/:email', authRequired, UserCtrl.findById);
 
     router.get(_base + '/me', UserCtrl.me);
 
@@ -31,16 +29,13 @@ module.exports = function(router) {
         .get(StepsCtrl.findAllSteps)
         .post(StepsCtrl.addStep);
 
-    router.route(_base + '/steps/multiple')
-        .post(StepsCtrl.addMultipleSteps);
+    router.post(_base + '/steps/multiple', authRequired, StepsCtrl.addMultipleSteps);
 
-    router.route(_base + '/steps/:id')
-        .get(StepsCtrl.findById);
+    router.get(_base + '/steps/:id', StepsCtrl.findById);
 
     /* Tour REST */
 
-    router.route(_base + '/tours')
-        .post(ToursCtrl.addTours);
+    router.post(_base + '/tours', authRequired, ToursCtrl.addTours);
 
     router.route(_base + '/tours/:apikey/:id')
         .get(ToursCtrl.findById);
@@ -52,4 +47,21 @@ module.exports = function(router) {
 
     return router;
 
+}
+
+// Middleware that requires the user to be logged in. If the user is not logged
+// in, it will redirect the user to authorize the application and then return
+// them to the original URL they requested.
+function authRequired(req, res, next) {
+  
+    console.log(req.path);
+    if (req.user) {
+        next();
+        return;
+    } else {
+        req.session.oauth2return = req.originalUrl;
+        return res.redirect('/auth/login');
+    }
+
+    next();
 }
