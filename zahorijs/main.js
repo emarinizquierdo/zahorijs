@@ -35,7 +35,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
         var url = tabs[0].url,
             _effectiveServer = '',
             _localServer = 'http://localhost:8080/editor/',
-            _bucketServer = 'https://storage.googleapis.com/bbva-front.appspot.com/zahorijs/' + USERTOUR_VERSION,
+            _bucketServer = 'https://zahorijs-nefele.rhcloud.com/editor/',
             _nocache = new Date().getTime(),
             _version = "";
 
@@ -48,8 +48,8 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
             _effectiveServer = _bucketServer;
             //_effectiveServer = _localServer;
-            _version = ".min";
-            //_version = "";
+            //_version = ".min";
+            _version = "";
         }
 
         chrome.tabs.executeScript(null, {
