@@ -2,6 +2,7 @@ var UserCtrl = require('../controllers/users'),
     AppsCtrl = require('../controllers/apps'),
     StepsCtrl = require('../controllers/steps'),
     ToursCtrl = require('../controllers/tours'),
+    superagent = require('superagent'),
     passport = require('passport');
 
 module.exports = function(router) {
@@ -20,7 +21,7 @@ module.exports = function(router) {
 
     router.route(_base + '/apps')
         .get(AppsCtrl.findAllApps)
-				.put(AppsCtrl.updateApps);
+        .put(AppsCtrl.updateApps);
 
 
     /* Steps REST*/
@@ -49,19 +50,51 @@ module.exports = function(router) {
 
 }
 
+function checkToken(token, callback) {
+    console.log('el token es....' + token);
+    superagent.get('https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=' + token)
+        .end(function(err, res) {
+
+            if (res && res.body && res.body.email) {
+                callback(res.body.email);
+            } else {
+                callback();
+            }
+
+        });
+
+}
+
+
 // Middleware that requires the user to be logged in. If the user is not logged
 // in, it will redirect the user to authorize the application and then return
 // them to the original URL they requested.
 function authRequired(req, res, next) {
-  
-    console.log(req.path);
-    if (req.user) {
-        next();
-        return;
+
+    if (req && req.headers && req.headers.token) {
+        checkToken(req.headers.token, function(email) {
+
+            if (email) {
+                req.user = {email : email};
+                next();
+                return;
+            } else {
+                return res.status(403).send('forbiden');
+            }
+
+        });
+
     } else {
-        req.session.oauth2return = req.originalUrl;
-        return res.redirect('/auth/login');
+
+        if (req.user) {
+            next();
+            return;
+        } else {
+            req.session.oauth2return = req.originalUrl;
+            return res.redirect('/auth/login');
+        }
+        next();
+        
     }
 
-    next();
 }

@@ -11,6 +11,7 @@ var express = require("express"),
     auth = require('./oauth/oauth2.js')(passport, router),
     session = require('express-session'),
     routes = require('./routes')(router),
+    cors = require('cors'),
     path = require('path');
 
 
@@ -24,6 +25,7 @@ var mongo_url = process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost';
 var mongoApp = process.env.OPENSHIFT_APP_NAME || '/zahorijs';
 
 
+app.use(cors());
 app.use(express.static(path.join(__dirname + '/../dist')));
 
 app.use(bodyParser.urlencoded({
@@ -35,6 +37,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride());

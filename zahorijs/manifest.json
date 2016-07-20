@@ -3,7 +3,7 @@
     "description": "ZahoriJs",
     "version": "1.0",
     "permissions": [
-        "tabs", "http://*/*", "https://*/*"
+        "tabs", "http://*/*", "https://*/*", "identity"
     ],
     "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwfjU5uEkM4XDoD9mDPhKIJUZaho5GKKFWuOJlpDEYuy1Rp+sUfZGcrGtPElQkVhTeMC/+LzXB98/8kJ1Y930178TT1gr5090O/lGO9XX99wD5yQiSS/tqZfk926JR//T9y4ukym7eNUdt9GgkNGQ+RjNxDko1w0ZwTgS7h3Vvf06US+Z0ZoFw3QTLFOOJ6WmGT+G8L9rF3Gs70gwoRj6315gFaRGAizN3xHxYPmqbL1kQLF+Qxs9FS24pUuXWGWiVqfmYyEQT0TnIZvi0iMSfogiKhQ1XksP4XfjAaatM1t9H3fbrWwa+LvmAo7m12ZihToyY2UZvKUoC0dyek+gmwIDAQAB",
     "browser_action": {
@@ -18,5 +18,11 @@
     "background": {
         "scripts": ["main.js"]
     },
+    "oauth2": {
+    "client_id": "606554190943-0av43b0bdcia28guasiimgmv9m5oj4do.apps.googleusercontent.com",
+    "scopes": [
+      "email"
+    ]
+  },
     "manifest_version": 2
 }

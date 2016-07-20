@@ -56,7 +56,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "09bb1c2794b5b86d7ffd"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4024f2e71b744a0fa2a5"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3502,17 +3502,19 @@
 	            showall: true
 	        };
 
-	        var url = properties.url[utils.environment().env].tour + "/" + pOptions.apiKey + "/" + pOptions.id;
+	        var url = "http://localhost:8080" + properties.url[utils.environment().env].tour + "/" + pOptions.apiKey + "/" + pOptions.id;
 
 	        request.get(url)
-	            .end(callback);
+	        .set('token', TOKENOAUTH)
+	        .end(callback);
 
 	    };
 
 	    exports.save = function(pTour, callback) {
 
-	        request.post(properties.url[utils.environment().env].tour)
+	        request.post("http://localhost:8080" + properties.url[utils.environment().env].tour)
 	            .send(pTour)
+	            .set('token', TOKENOAUTH)
 	            .end(callback);
 
 	    }

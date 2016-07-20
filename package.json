@@ -2,6 +2,7 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.5.1",
+    "cors": "^2.7.1",
     "express": "^4.7.1",
     "express-session": "^1.14.0",
     "method-override": "^2.1.2",
@@ -69,7 +70,7 @@
     "lint": "eslint .",
     "setup": "npm install && npm run validate",
     "server": "node server/app.js",
-    "webpack" : "npm run clean-and-copy && webpack-dev-server --hot --env.dev --content-base dist && copy-files"
+    "webpack": "npm run clean-and-copy && webpack-dev-server --hot --env.dev --content-base dist && copy-files"
   },
   "main": "server/app.js"
 }

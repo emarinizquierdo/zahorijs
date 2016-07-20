@@ -2,7 +2,6 @@
 
     <nav>{user}
         <div class="nav-wrapper black">
-            <a href="#" class="brand-logo hide-on-med-and-up">ZahoriJs</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li each={ links } if="{showEver || (zsjUserPhantom.isUserLogged && auth) || (!zsjUserPhantom.isUserLogged && !auth)}" >
                     <a href="/{ url }" class="">{ name }</a>

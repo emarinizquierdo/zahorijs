@@ -39,10 +39,9 @@ exports.findById = function(req, res) {
 exports.addTours = function(req, res) {
 
     console.log('POST');
-    console.log(req.body);
+    console.log(req);
 
     if (req && req.user) {
-
 
         Users.findOne({
             email: req.user.email
@@ -99,7 +98,7 @@ exports.addTours = function(req, res) {
             }
 
             res.status(404).send('not found');
-            
+
         });
 
     } else {

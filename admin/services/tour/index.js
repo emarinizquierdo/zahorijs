@@ -11,17 +11,19 @@
             showall: true
         };
 
-        var url = properties.url[utils.environment().env].tour + "/" + pOptions.apiKey + "/" + pOptions.id;
+        var url = "http://localhost:8080" + properties.url[utils.environment().env].tour + "/" + pOptions.apiKey + "/" + pOptions.id;
 
         request.get(url)
-            .end(callback);
+        .set('token', TOKENOAUTH)
+        .end(callback);
 
     };
 
     exports.save = function(pTour, callback) {
 
-        request.post(properties.url[utils.environment().env].tour)
+        request.post("http://localhost:8080" + properties.url[utils.environment().env].tour)
             .send(pTour)
+            .set('token', TOKENOAUTH)
             .end(callback);
 
     }

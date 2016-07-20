@@ -9,7 +9,7 @@
                         <div class="promo__content black">
 
                             <!-- promo__topic -->
-                            <h2 class="promo__topic white-text">ZahoriJs.</h2>
+                            <h2 class="promo__topic white-text main-logo">ZahoriJs.</h2>
                             <!-- /promo__topic -->
 
                             <p class="white-text">The final service to make your guide tours</p>
@@ -113,6 +113,9 @@
     </script>
 
     <style>
+    .main-logo{
+      font-family: 'Oswald', sans-serif;
+    }
         .parallax {
             z-index: 0;
         }

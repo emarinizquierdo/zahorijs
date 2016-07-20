@@ -8,7 +8,7 @@ module.exports = function(passport, router) {
     function extractProfile(profile) {
         var imageUrl = '';
         var email = '';
-
+console.log(profile);
         if (profile.photos && profile.photos.length) {
             imageUrl = profile.photos[0].value;
         }
