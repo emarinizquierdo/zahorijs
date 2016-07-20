@@ -9,7 +9,7 @@
 
             localhost: {
                 icons: _connector + "/icons/bubble",
-                tour: _connector + "/tours",
+                tour: "http://localhost:8080" + _connector + "/tours",
             },
             dev: {
                 icons: _connector + "/icons/bubble",
@@ -21,7 +21,7 @@
             },
             pro: {
                 icons: _connector + "/icons/bubble",
-                tour: _connector + "/tours",
+                tour: "http://localhost:8080" + _connector + "/tours",
             }
 
         }

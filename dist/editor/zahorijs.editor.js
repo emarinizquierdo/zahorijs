@@ -56,7 +56,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "4024f2e71b744a0fa2a5"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2bd7fb595096cf47aeab"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3257,21 +3257,12 @@
 
 	        } else {
 
-	            var _environmentIndex = _environmentsSupported.indexOf(_locationSplitted[0]);
-
-	            if (_environmentIndex == -1) {
-	                _environment = {
-	                    env: "pro",
-	                    envPrefix: "",
-	                    isLocalhost: false
-	                };
-	            } else {
-	                _environment = {
-	                    env: _environmentsSupported[_environmentIndex],
-	                    envPrefix: _environmentsSupported[_environmentIndex] + "-",
-	                    isLocalhost: false
-	                };
-	            }
+	            _environment = {
+	                env: "pro",
+	                envPrefix: "",
+	                isLocalhost: false
+	            };
+	            
 	        }
 
 	        return _environment;
@@ -3502,7 +3493,7 @@
 	            showall: true
 	        };
 
-	        var url = "http://localhost:8080" + properties.url[utils.environment().env].tour + "/" + pOptions.apiKey + "/" + pOptions.id;
+	        var url = properties.url[utils.environment().env].tour + "/" + pOptions.apiKey + "/" + pOptions.id;
 
 	        request.get(url)
 	        .set('token', TOKENOAUTH)
@@ -3512,7 +3503,7 @@
 
 	    exports.save = function(pTour, callback) {
 
-	        request.post("http://localhost:8080" + properties.url[utils.environment().env].tour)
+	        request.post(properties.url[utils.environment().env].tour)
 	            .send(pTour)
 	            .set('token', TOKENOAUTH)
 	            .end(callback);
@@ -3537,7 +3528,7 @@
 
 	            localhost: {
 	                icons: _connector + "/icons/bubble",
-	                tour: _connector + "/tours",
+	                tour: "http://localhost:8080" + _connector + "/tours",
 	            },
 	            dev: {
 	                icons: _connector + "/icons/bubble",
@@ -3549,7 +3540,7 @@
 	            },
 	            pro: {
 	                icons: _connector + "/icons/bubble",
-	                tour: _connector + "/tours",
+	                tour: "http://localhost:8080" + _connector + "/tours",
 	            }
 
 	        }

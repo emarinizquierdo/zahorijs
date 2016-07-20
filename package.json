@@ -8,7 +8,8 @@
     "method-override": "^2.1.2",
     "mongoose": "~3.6.11",
     "passport": "^0.3.2",
-    "passport-google-oauth20": "^1.0.0"
+    "passport-google-oauth20": "^1.0.0",
+    "superagent": "^2.0.0"
   },
   "devDependencies": {
     "babel": "6.5.2",

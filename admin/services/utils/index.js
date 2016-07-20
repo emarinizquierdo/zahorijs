@@ -16,21 +16,12 @@
 
         } else {
 
-            var _environmentIndex = _environmentsSupported.indexOf(_locationSplitted[0]);
-
-            if (_environmentIndex == -1) {
-                _environment = {
-                    env: "pro",
-                    envPrefix: "",
-                    isLocalhost: false
-                };
-            } else {
-                _environment = {
-                    env: _environmentsSupported[_environmentIndex],
-                    envPrefix: _environmentsSupported[_environmentIndex] + "-",
-                    isLocalhost: false
-                };
-            }
+            _environment = {
+                env: "pro",
+                envPrefix: "",
+                isLocalhost: false
+            };
+            
         }
 
         return _environment;

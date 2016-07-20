@@ -47,8 +47,8 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 
         }else{
 
-            //_effectiveServer = _bucketServer;
-            _effectiveServer = _localServer;
+            _effectiveServer = _bucketServer;
+            //_effectiveServer = _localServer;
             //_version = ".min";
             _version = "";
         }
