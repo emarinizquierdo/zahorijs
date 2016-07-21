@@ -4,13 +4,12 @@
     function environment() {
 
         var _locationSplitted = $window.location.hostname.split("-");
-        var _environmentsSupported = ["dev", "au"];
         var _environment;
 
         if (_locationSplitted[0] === "localhost") {
             _environment = {
-                env: _environmentsSupported[0],
-                envPrefix: _environmentsSupported[0] + "-",
+                env: "localhost",
+                envPrefix: "",
                 isLocalhost: true
             };
 
@@ -21,7 +20,7 @@
                 envPrefix: "",
                 isLocalhost: false
             };
-            
+
         }
 
         return _environment;

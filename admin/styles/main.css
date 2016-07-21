@@ -12,5 +12,4 @@
     transition: all 0.3s ease-out;
     outline: #00FF00 dotted thick;
     outline-offset: -5px;
-    /*-webkit-filter: brightness(0.4);*/
 }

@@ -7,7 +7,7 @@
             <p class="uts-steps-stack-to-left" title="move editor to the right" onclick="{toRight}" if="{toTheLeft}">&#8649;</p>
             <div class="uts-steps-stack-record-icon" title="restart user tour recording" if="{ steps.data.length > 0 && !tours.isLoading && tours.stopRecord}" onclick="{restartRecord}"><i class="fa fa-circle"></i></div>
             <div class="uts-steps-stack-record-icon" title="stop user tour recording" if="{ steps.data.length > 0 && !tours.isLoading && !tours.stopRecord}" onclick="{stopRecord}"><i class="fa fa-pause"></i></div>
-            <h2 class="uts-steps-stack-title">Tutorial Editor</h2>
+            <h2 class="uts-steps-stack-title">ZahoriJs.</h2>
             <div class="uts-steps-stack-play-icon" title="preview user tour" if="{ steps.data.length > 0 && !tours.isLoading}" onclick="{play}"></div>
         </div>
 
@@ -218,13 +218,13 @@
           position: fixed;
           z-index: 999999;
           width: 350px;
-          background-color: #fff;
+          background-color: transparent;
           box-shadow: 1px 1px 2px #cfcfcf;
           bottom: 20px;
           right: 20px;
-          -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.41);
-          -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.41);
-          box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.41);
+          -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+          -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+          box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       }
 
       .uts-steps-stack.uts-to-left{
@@ -234,12 +234,12 @@
       }
 
       .uts-steps-stack .uts-steps-stack-header {
-          padding: 10px;
-          text-align: center;
-          border-bottom: 1px solid #EAEAEA;
-          background-color: #576AAA;
-          color: white;
-          border: 1px solid #636363;
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #EAEAEA;
+        background-color: #2B2B2B;
+        color: white;
+        border: #2B2B2B;
       }
 
       .uts-steps-stack .uts-steps-stack-title{
@@ -247,6 +247,8 @@
         color: #ffffff;
         font-size: 18px!important;
         font-weight: bold;
+        padding: 0;
+        margin: 0!important;
       }
 
       .uts-steps-stack .uts-steps-stack-footer {
@@ -314,6 +316,7 @@
           padding: 0;
           max-height: 250px;
           overflow: auto;
+          background-color: white;
       }
       .uts-steps-stack__item {
           display: block;
@@ -330,7 +333,7 @@
       .uts-steps-stack__link {
           display: block;
           padding: 4px 12px;
-          color: #576AAA;
+          color: #565656;
           text-decoration: none;
           white-space: nowrap;
           overflow: hidden;
@@ -385,14 +388,14 @@
           border-color: transparent transparent transparent #ffffff;
           position: absolute;
           right: 15px;
-          top: 17px;
+          top: 15px;
           cursor: pointer;
       }
 
       .uts-steps-stack-record-icon {
           position: absolute;
           right: 46px;
-          top: 17px;
+          top: 15px;
           vertical-align: middle;
       }
       .uts-steps-stack-record-icon .fa-circle{
