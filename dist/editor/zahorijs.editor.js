@@ -56,7 +56,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "2bd7fb595096cf47aeab"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9994543de75883cc2f8d"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -3530,17 +3530,9 @@
 	                icons: _connector + "/icons/bubble",
 	                tour: "http://localhost:8080" + _connector + "/tours",
 	            },
-	            dev: {
-	                icons: _connector + "/icons/bubble",
-	                tour: _connector + "/tours",
-	            },
-	            au: {
-	                icons: _connector + "/icons/bubble",
-	                tour: _connector + "/tours",
-	            },
 	            pro: {
 	                icons: _connector + "/icons/bubble",
-	                tour: "http://localhost:8080" + _connector + "/tours",
+	                tour: "https://zahorijs-nefele.rhcloud.com" + _connector + "/tours",
 	            }
 
 	        }
