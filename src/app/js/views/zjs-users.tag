@@ -1,6 +1,6 @@
 <zjs-users>
 
-    <div>
+    <div><div class="row"></div><div class="row"></div>
         <div class="row">
             <div class="col l2">
                 <zjs-admin-sidebar></zjs-admin-sidebar>

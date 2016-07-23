@@ -50,6 +50,11 @@
             background-color: #111!important;
         }
 
+        .in-middle{
+          margin-left: auto;
+          margin-right: auto;
+        }
+
     </style>
 
 </zjs-main>

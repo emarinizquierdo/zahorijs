@@ -1,7 +1,7 @@
 <zjs-admin>
 
     <div>
-        <div class="row">
+        <div class="row"><div class="row"></div><div class="row"></div>
             <div class="col l2">
                 <zjs-admin-sidebar></zjs-admin-sidebar>
             </div>
@@ -43,5 +43,5 @@
             $('ul.tabs').tabs();
         })
     </script>
-    
+
 </zjs-admin>
