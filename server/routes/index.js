@@ -11,6 +11,8 @@ module.exports = function(router) {
 
     /* User REST */
 
+    router.get(_base + '/users', isSuperUser, UserCtrl.findAllUsers);
+
     router.put(_base + '/user', authRequired, UserCtrl.updateUser);
 
     router.route(_base + '/user/:email', authRequired, UserCtrl.findById);
@@ -94,7 +96,18 @@ function authRequired(req, res, next) {
             return res.redirect('/auth/login');
         }
         next();
-        
+
     }
+
+}
+
+function isSuperUser(req, res, next){
+console.log(req.user);
+  if (req.user && (req.user.role == 'superadmin')) {
+      next();
+      return;
+  } else {
+      return res.status(403).send('forbiden');
+  }
 
 }

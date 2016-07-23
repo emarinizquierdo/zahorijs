@@ -40,7 +40,10 @@ var Tours = new Schema({
 var Users = new Schema({
     email : String,
     apiKey : String,
-    apps : []
+    displayName: String,
+    image: String,
+    apps : [],
+    role : String
 });
 
 module.exports = mongoose.model('Steps', Steps);

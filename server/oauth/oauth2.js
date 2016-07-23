@@ -18,6 +18,10 @@ console.log(profile);
             console.log(email);
         }
 
+        if (profile.image && profile.image.length) {
+            imageUrl = profile.image[0].url;
+        }
+
         return {
             id: profile.id,
             displayName: profile.displayName,
@@ -51,7 +55,10 @@ console.log(profile);
             if (!user) {
 
                 var user = new Users({
-                    email: _profile.email
+                    email: _profile.email,
+                    displayName: _profile.displayName,
+                    image: _profile.image,
+                    role : 'user'
                 });
 
                 user.save(function(err, user) {
@@ -59,6 +66,7 @@ console.log(profile);
                 });
 
             } else {
+                _profile.role = user.role;
                 cb(null, _profile);
             }
 

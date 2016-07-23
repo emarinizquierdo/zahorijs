@@ -1,20 +1,23 @@
 <zjs-navbar>
 
-    <nav>{user}
+    <nav>
         <div class="nav-wrapper black">
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li each={ links } if="{showEver || (zsjUserPhantom.isUserLogged && auth) || (!zsjUserPhantom.isUserLogged && !auth)}" >
-                    <a href="/{ url }" class="">{ name }</a>
+                <li class="{'active' : (('/' + url) == active) }" each={ links } if="{showEver || (zsjUserPhantom.isUserLogged && auth) || (!zsjUserPhantom.isUserLogged && !auth)}">
+                    <a href="/{ url }">{ name }</a>
+                </li>
+                <li if="{zsjUserPhantom.isUserLogged}"><img src="{user.image}" alt="" id="profileImage" class="circle">
                 </li>
             </ul>
+
         </div>
     </nav>
 
     <script>
 
         var self = this;
-        self.zsjUserPhantom = _shared.zsjUserPhantom;
 
+        /* Public Variables */
         this.links = [
             {
                 name: "Home",
@@ -24,32 +27,55 @@
             }, {
                 name: "Admin",
                 url: "admin",
-                auth : true,
+                auth: true,
                 showEver: false
             }, {
                 name: "Login",
                 url: "login",
-                auth : false,
+                auth: false,
                 showEver: false
             }, {
                 name: "Logout",
                 url: "auth/logout",
-                auth : true,
+                auth: true,
                 showEver: false
             }
         ];
 
-        self.on("mount", function(){
-            self.user = 'algo'
-        });
+        /* Public Methods */
+        this.zsjUserPhantom = _shared.zsjUserPhantom;
+        self.active = 'algo';
 
+        /* Private Methods */
+        function isActive() {
+            self.active = location.pathname;
+            riot.update();
+        }
+
+        /* Init */
+
+        riot.route('*', isActive);
+
+        self.on("mount", function () {
+            self.user = _shared.zsjUserPhantom.user;
+        });
     </script>
 
     <style scoped>
-nav{
-  z-index: 1;
-position: absolute;
-}
+        nav {
+            z-index: 1;
+            position: absolute;
+        }
+        nav ul li.active {
+            background-color: rgba(245, 245, 245, 0.22);
+        }
+
+        #profileImage {
+            width: 32px;
+            margin-right: 14px;
+            margin-top: 15px;
+        }
+
     </style>
 
 </zjs-navbar>

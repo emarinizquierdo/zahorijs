@@ -5,14 +5,15 @@ var Users = mongoose.model('Users');
 //GET - Return all Steps in the DB
 exports.findAllUsers = function(req, res) {
 
+
     Users.find(function(err, users) {
 
         if (err) res.send(500, err.message);
-
         console.log('GET /users')
         res.status(200).jsonp(users);
 
     });
+
 
 };
 
@@ -82,7 +83,10 @@ exports.addUser = function(req, res) {
 
     var user = new Users({
         email: req.body.email,
-        apiKey: req.body.apiKey
+        apiKey: req.body.apiKey,
+        displayName: req.body.displayName,
+        image: req.body.image,
+        role: 'user'
     });
 
     user.save(function(err, user) {

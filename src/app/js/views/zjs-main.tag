@@ -5,6 +5,7 @@
     <script>
 
         import './zjs-home.tag';
+        import './zjs-users.tag';
         import './zjs-admin.tag';
         import './zjs-login.tag';
         import '../components/zjs-navbar.tag';
@@ -13,16 +14,17 @@
         var currentPage = null;
 
         riot.route('/auth/*', auth);
+        riot.route('/admin/*', goTo);
         riot.route('*', goTo);
         riot.route('', goTo);
 
         function auth(path) {
 
-          if(path == "logout"){
-            window._shared.zsjUserPhantom.trigger('logout');
-          }
+            if (path == "logout") {
+                window._shared.zsjUserPhantom.trigger('logout');
+            }
 
-          window.location.href = '/auth/' + path;
+            window.location.href = '/auth/' + path;
 
         }
 
@@ -32,22 +34,22 @@
                 currentPage.unmount(true);
             }
 
-            if(!path ||  (path == "admin" && !_shared.zsjUserPhantom.isUserLogged)){
-              riot.route("home");
+            if (!path || (path == "admin" && !_shared.zsjUserPhantom.isUserLogged)) {
+                riot.route("home");
             }
 
             currentPage = riot.mount('div#content', 'zjs-' + path)[0];
         }
-
     </script>
 
     <style scoped>
-#content{
-  padding-top: 64px;
-}
-.black{
-  background-color: #111!important;
-}
+        #content {
+            padding-top: 64px;
+        }
+        .black {
+            background-color: #111!important;
+        }
+
     </style>
 
 </zjs-main>
