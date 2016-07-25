@@ -62,6 +62,7 @@ exports.addTours = function(req, res) {
                           console.log("aqui entra");
                             Tours.findById(req.body._id, function(err, tour) {
 
+                                tour.owner = user._id;
                                 tour.apiKey = req.body.apiKey;
                                 tour.id = req.body.id;
                                 tour.name = req.body.name;
@@ -77,6 +78,7 @@ exports.addTours = function(req, res) {
                         } else {
                             console.log("aqui tambien entra");
                             var tour = new Tours({
+                                owner: user._id,
                                 apiKey: req.body.apiKey,
                                 id: req.body.id,
                                 name: req.body.name,
@@ -107,7 +109,6 @@ exports.addTours = function(req, res) {
     }
 
 };
-
 
 function checkTourPermission() {
 

@@ -25,6 +25,7 @@ module.exports = function(router) {
         .get(AppsCtrl.findAllApps)
         .put(AppsCtrl.updateApps);
 
+    router.delete(_base + '/apps/:id', authRequired, AppsCtrl.removeApp);
 
     /* Steps REST*/
 

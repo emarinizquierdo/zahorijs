@@ -1,7 +1,7 @@
 <zjs-helpme class="right-align">
 
     <span>
-        <a id="helpme" class="right-align waves-effect waves-light btn" onclick="{init}">Help me!</a>
+        <a id="helpme" class="right-align waves-effect waves-light btn  blue lighten-2" onclick="{init}">Help me!</a>
     </span>
 
     <script>

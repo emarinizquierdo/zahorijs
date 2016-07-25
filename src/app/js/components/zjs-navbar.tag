@@ -44,6 +44,7 @@
 
         /* Public Methods */
         this.zsjUserPhantom = _shared.zsjUserPhantom;
+        self.user = {};
         self.active = 'algo';
 
         /* Private Methods */
@@ -57,8 +58,13 @@
         riot.route('*', isActive);
 
         self.on("mount", function () {
+
+        });
+        
+        _shared.zsjUserPhantom.on('update', function (value) {
             self.user = _shared.zsjUserPhantom.user;
         });
+
     </script>
 
     <style scoped>
