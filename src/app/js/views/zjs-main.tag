@@ -55,6 +55,10 @@
           margin-right: auto;
         }
 
+        .pointer{
+          cursor: pointer;
+        }
+
     </style>
 
 </zjs-main>

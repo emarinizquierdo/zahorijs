@@ -8,7 +8,8 @@
         var self = this;
         this.isUserLogged = false;
         this.user = {};
-
+        this.persistUser = persistUser;
+        
         this.on('logout', function () {
             self.isUserLogged = false;
             localStorage.removeItem('zjs.user');

@@ -2,10 +2,10 @@
 
     <div><div class="row"></div><div class="row"></div>
         <div class="row">
-            <div class="col l2">
+            <div class="col m2 l2">
                 <zjs-admin-sidebar></zjs-admin-sidebar>
             </div>
-            <div class="col l10">
+            <div class="col m10 l10">
                 <div class="row">
 
                     <div class="col s12">

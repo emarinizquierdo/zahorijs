@@ -2,14 +2,24 @@
 
     <!-- Basic Card -->
 
-    <ul class="collection with-header">
-        <li class="collection-header">
-            <h4>Users</h4>
-        </li>
-        <li each={ users } class="collection-item avatar">
-<img src="{image}" alt="" id="profileImage" class="circle">
-          {displayName}</li>
-    </ul>
+        <table>
+       <thead>
+         <tr>
+             <th data-field="id">Name</th>
+             <th data-field="name">Email</th>
+             <th data-field="price">Num Apps</th>
+         </tr>
+       </thead>
+
+       <tbody class="stripped">
+         <tr each={ users } class="{'green lighten-5' : apps.length > 1}">
+           <td><div class="chip white"><img src="{image}" alt="" id="profileImage" class="circle">{displayName}</div></td>
+           <td>{email}</td>
+           <td>{apps.length}</td>
+         </tr>
+       </tbody>
+     </table>
+
 
     <script>
 

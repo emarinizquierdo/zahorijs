@@ -2,8 +2,8 @@
 
     <div>
         <div class="collection">
-            <a if="{user.role == 'superadmin'}" href="/admin/users" class="collection-item {'active' : isActive('/admin/users')}">Users</a>
-            <a href="/admin" class="collection-item {'active' : isActive('/admin')}">Account</a>
+            <a if="{user.role == 'superadmin'}" href="/admin/users" class="collection-item blue-text {'blue darken-3 white-text' : isActive('/admin/users')}">Users</a>
+            <a href="/admin" class="collection-item blue-text {'blue darken-3 white-text' : isActive('/admin')}">Account</a>
         </div>
     </div>
 
@@ -25,6 +25,8 @@
         });
     </script>
 
-    <style scoped></style>
+    <style scoped>
+
+    </style>
 
 </zjs-admin-sidebar>

@@ -1,28 +1,34 @@
 <zjs-user-card>
 
     <!-- Basic Card -->
-    <div class="card">
-        <div class="card-content ">
-            <div class="row">
-                <form class="col s12">
-                    <div class="row">
-
-                        <ul class="collection with-header">
-                            <li class="collection-header">
-                                <h6>{user.email}</h6>
-                            </li>
-                            <li class="collection-item">
-                                <a class="waves-effect waves-light btn {'red darken-4' : user.apiKey, 'blue' : !user.apiKey}" onclick="{generateApiKey}"><span if="{user.apiKey}">Re</span>Generate API KEY</a>
-                            </li>
-                            <li if="{user.apiKey}" class="collection-item grey-text">{user.apiKey}</li>
-                        </ul>
-
-                    </div>
-                </form>
-            </div>
+    <div>
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row">
+            Genera una API KEY para poder crear tours para tus aplicaciones. <br/>Esta KEY tendrás que utilizarla en tu aplicación.
+            Si vuelves a generar una nueva API KEY, asegúrate de cambiarla allá donde la uses.
         </div>
-        <div class="card-action" if="{hasToSave}">
+        <div class="row">
+            <form class="col s12 l5">
+                <div class="row">
+
+                    <ul class="collection with-header">
+                        <li class="collection-header">
+                            <h6>{user.email}</h6>
+                        </li>
+                        <li class="collection-item">
+                            <a class="waves-effect waves-light btn {'red darken-4' : user.apiKey, 'blue' : !user.apiKey}" onclick="{generateApiKey}">
+                                <span if="{user.apiKey}">Re</span>Generate API KEY</a>
+                        </li>
+                        <li if="{user.apiKey}" class="collection-item grey-text">{user.apiKey}</li>
+                    </ul>
+
+                </div>
+            </form>
+        </div>
+        <div if="{hasToSave}">
             <a class="waves-effect  btn-flat" onclick="{save}">Save</a>
+            <a class="waves-effect  btn-flat" onclick="{cancel}">Cancel</a>
         </div>
     </div>
 
@@ -34,8 +40,12 @@
         /* Binding */
         var self = this;
 
+        /* Private Vars */
+        var oldKey;
+
         /* Public Variables */
         this.save = save;
+        this.cancel = cancel;
         this.generateApiKey = generateApiKey;
         this.user = _shared.zsjUserPhantom.user;
         this.hasToSave = false;
@@ -45,13 +55,15 @@
             window._shared.zsjUserCard = self;
         });
 
-
         function save() {
 
             superagent.put(properties.services.user).send({apiKey: self.user.apiKey}).end(function (err, res) {
+
                 // Calling the end function will send the request
-                if(res && res.body){
-                  _shared.zsjUserPhantom.user = res.body;
+                if (res && res.body) {
+
+                    _shared.zsjUserPhantom.user = res.body;
+                    _shared.zsjUserPhantom.persistUser();
                 }
                 self.hasToSave = false;
                 self.update();
@@ -59,7 +71,13 @@
 
         }
 
+        function cancel() {
+            self.user.apiKey = oldKey;
+            self.hasToSave = false;
+        }
+
         function generateApiKey() {
+            oldKey = self.user.apiKey;
             self.user.apiKey = generateUUID();
             self.hasToSave = true;
         }
@@ -81,6 +99,5 @@
 
             return uuid;
         }
-
     </script>
 </zjs-user-card>

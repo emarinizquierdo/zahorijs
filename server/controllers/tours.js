@@ -21,10 +21,11 @@ exports.findAllTours = function(req, res) {
 exports.findById = function(req, res) {
 
 
-
     Tours.findOne({
+
         apiKey: req.params.apikey,
         id: req.params.id
+
     }, function(err, tour) {
         if (err) return res.send(500, err.message);
 

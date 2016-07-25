@@ -1,6 +1,7 @@
 //File: controllers/steps.js
 var mongoose = require('mongoose');
 var Users = mongoose.model('Users');
+var Tours = mongoose.model('Tours');
 
 //GET - Return all Steps in the DB
 exports.findAllUsers = function(req, res) {
@@ -63,10 +64,18 @@ exports.updateUser = function(req, res) {
         }, function(err, user) {
             if (err) return res.status(500).send(err.message);
 
+            var _oldApiKey = user.apiKey;
             user.apiKey = req.body.apiKey;
             user.save(function(err, user) {
                 if (err) return res.status(500).send(err.message);
-                res.status(200).jsonp(user);
+
+                Tours.update({apiKey: _oldApiKey}, {apiKey : user.apiKey}, function(err, tours){
+
+                    if (err) return res.status(500).send(err.message);
+                    res.status(200).jsonp(user);
+
+                });
+
             });
 
         });

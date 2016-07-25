@@ -1,50 +1,52 @@
 <zjs-user-apps>
 
     <!-- Basic Card -->
-    <div class="card">
-        <div class="card-content ">
+    <div>
+      <div class="row"></div>
+      <div class="row"></div>
             <div class="row">
                 <form class="col s12">
                     <div class="row">
-
-                        <table>
+                        <table if="{apps.length || adding}">
                             <thead>
                                 <tr>
-                                    <th data-field="id">AppId</th>
-                                    <th data-field="name">App Name</th>
-                                    <th data-field="price">Creation Date</th>
+                                    <th data-field="id" class="col s3 l3">AppId</th>
+                                    <th data-field="name" class="col s5 l5">App Description</th>
+                                    <th data-field="price" class="col s3 l3">Creation Date</th>
+                                    <th></th>
                                 </tr>
                             </thead>
-
                             <tbody>
                                 <tr each={ apps }>
-                                    <td>{appId}</td>
-                                    <td>{appName}</td>
-                                    <td>{timestamp}</td>
+                                    <td class="col s3 l3">{appId}</td>
+                                    <td class="col s5 l5">{appName}</td>
+                                    <td class="col s3 l3"><zjs-date time="{timestamp}"></zjs-date></td>
+                                    <td class="col s1 l1"><i class="pointer fa fa-times red-text text-darken-4" aria-hidden="true"></i></td>
                                 </tr>
                                 <tr if="{adding}">
-                                    <td><input placeholder="App Id" id="app_id" type="text" class="validate"></td>
-                                    <td><input placeholder="App Name" id="app_name" type="text" class="validate"></td>
+                                    <td class="col s3 l3"><input placeholder="App Id" id="app_id" type="text" class="validate"></td>
+                                    <td class="col s5 l5"><input placeholder="App Name" id="app_name" type="text" class="validate"></td>
                                     <td></td>
                                 </tr>
                             </tbody>
-                        </table>
-                        <a class="waves-effect waves-light btn blue" if="{!adding}" onclick="{addNew}">Add new</a>
+                        </table><div class="row"></div>
+                        <a class="waves-effect waves-light btn blue darken-3" if="{!adding}" onclick="{addNew}">Add new</a>
                         <a class="waves-effect waves-light btn green" if="{adding}" onclick="{saveNew}">Save</a>
                         <a class="waves-effect waves-light btn red darken-4" if="{adding}" onclick="{cancelNew}">Cancel</a>
                     </div>
                 </form>
             </div>
+            <div if="{hasToSave}"><div class="row"></div>
+                <a class="waves-effect  btn-flat" onclick="{save}">Save</a>
+            </div>
         </div>
-        <div class="card-action" if="{hasToSave}">
-            <a class="waves-effect  btn-flat" onclick="{save}">Save</a>
-        </div>
-    </div>
+
 
     <script>
 
         import superagent from 'superagent';
         import properties from '../properties';
+        import './zjs-date.tag';
 
         /* Binding */
         var self = this;
