@@ -12,10 +12,10 @@
                     <div class="col s12">
                         <ul class="tabs">
                             <li class="tab col s3">
-                                <a class="blue-text" href="#test1">Account Info</a>
+                                <a class="active blue-text" href="#test1">Account Info</a>
                             </li>
                             <li class="tab col s3">
-                                <a class="active blue-text" href="#test2">Apps</a>
+                                <a class=" blue-text" href="#test2">Apps</a>
                             </li>
                         </ul>
                     </div>
@@ -35,6 +35,7 @@
     </div>
 
     <script>
+
 
         import userCard from '../components/zjs-user-card.tag'
         import userCard from '../components/zjs-user-apps.tag'

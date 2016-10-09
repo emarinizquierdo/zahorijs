@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 var Users = mongoose.model('Users');
 var Tours = mongoose.model('Tours');
+var Subscriptions = mongoose.model('Subscriptions');
 
 //GET - Return all Steps in the DB
 exports.findAllApps = function(req, res) {
@@ -31,22 +32,37 @@ exports.updateApps = function(req, res) {
     console.log(req.body);
 
     if (req && req.user) {
+
         Users.findOne({
             email: req.user.email
         }, function(err, user) {
 
             if (err) res.send(500, err.message);
 
-            console.log('GET /Apps')
-            updateApp(user.apps, {
-                appId: req.body.appId,
-                appName: req.body.appName,
-                timestamp: new Date().getTime()
-            });
-            user.save(function(err, user) {
-                if (err) return res.status(500).send(err.message);
-                res.status(200).jsonp(user.apps);
-            });
+          console.log('GET /Apps')
+
+            Subscriptions.findOne({
+                email: req.user.email
+            }, function(err, subscription) {
+
+                if (err) res.send(500, err.message);
+
+                var _active = (!subscription && user.apps.length > 0) ? false : true;
+
+                updateApp(user.apps, {
+                    appId: req.body.appId,
+                    appName: req.body.appName,
+                    timestamp: new Date().getTime(),
+                    active : _active
+                });
+
+                user.save(function(err, user) {
+                    if (err) return res.status(500).send(err.message);
+                    res.status(200).jsonp(user.apps);
+                });
+
+              });
+
 
         });
     } else {
@@ -74,7 +90,7 @@ exports.removeApp = function(req, res) {
                 if (user.apps[i].appId == req.params.id) {
 
                     Tours.remove({
-                      
+
                         id: req.params.id,
                         owner: user._id
 

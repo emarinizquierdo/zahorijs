@@ -2,6 +2,7 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.5.1",
+    "braintree": "^1.41.0",
     "cors": "^2.7.1",
     "express": "^4.7.1",
     "express-session": "^1.14.0",

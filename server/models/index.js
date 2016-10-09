@@ -40,6 +40,7 @@ var Tours = new Schema({
 
 var Users = new Schema({
     email : String,
+    customerId : String,
     apiKey : String,
     displayName: String,
     image: String,
@@ -47,6 +48,14 @@ var Users = new Schema({
     role : String
 });
 
+var Subscriptions = new Schema({
+    id: Number,
+    email: String,
+    subscriptionId: String,
+    planType: String
+});
+
 module.exports = mongoose.model('Steps', Steps);
 module.exports = mongoose.model('Tours', Tours);
 module.exports = mongoose.model('Users', Users);
+module.exports = mongoose.model('Subscriptions', Subscriptions);

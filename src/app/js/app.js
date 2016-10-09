@@ -1,7 +1,8 @@
 window._shared = {};
 
-import './components/zjs-user-phantom.tag';
+import subscriptions from './components/zjs-user-phantom.tag';
 import './views/zjs-main.tag';
+import './model/subscriptions.js';
 
 riot.route.base('/');
 riot.mount('*');

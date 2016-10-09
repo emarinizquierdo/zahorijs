@@ -18,10 +18,10 @@
                             </thead>
                             <tbody>
                                 <tr each={ apps }>
-                                    <td class="col s3 l3">{appId}</td>
-                                    <td class="col s5 l5 grey-text">{appName}</td>
-                                    <td class="col s3 l3 grey-text"><zjs-date time="{timestamp}"></zjs-date></td>
-                                    <td class="col s1 l1"><i class="pointer fa fa-times red-text text-darken-4" aria-hidden="true" onclick="{openModal}"></i></td>
+                                    <td class="col s3 l3 {'disabled-row':!active}">{appId}</td>
+                                    <td class="col s5 l5 grey-text {'disabled-row':!active}">{appName}</td>
+                                    <td class="col s3 l3 grey-text {'disabled-row':!active}"><zjs-date time="{timestamp}"></zjs-date></td>
+                                    <td class="col s1 l1 {'disabled-row':!active}" ><i class="pointer fa fa-times red-text text-darken-4" aria-hidden="true" onclick="{openModal}"></i></td>
                                 </tr>
                                 <tr if="{adding}">
                                     <td class="col s3 l3"><input placeholder="App Id" id="app_id" type="text" class="validate"></td>
@@ -129,5 +129,13 @@
         }
 
     </script>
+
+    <style scoped>
+
+        .disabled-row {
+            color: #dcdcdc!important;
+        }
+
+    </style>
 
 </zjs-user-apps>

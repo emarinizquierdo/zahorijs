@@ -110,6 +110,62 @@ exports.addTours = function(req, res) {
 
 };
 
+/*
+
+//POST - Insert a new Tours in the DB
+exports.removeTour = function(req, res) {
+
+    console.log('DELETE');
+    console.log(req);
+
+    if (req && req.user) {
+
+        Users.findOne({zzzzzz
+            email: req.user.email
+        }, function(err, user) {
+
+            if (err) return res.status(500).send(err.message);
+
+                for (var i = 0; i < user.apps.length; i++) {
+                    console.log('el appid es: ' + user.apps[i].appId + " y el otro es " + req.body.id);
+                    if ((user.apps[i].appId == req.body.id) && (user._id ==)) {
+
+                        if (req.body._id) {
+                          console.log("aqui entra");
+                            Tours.findById(req.body._id, function(err, tour) {
+
+                                tour.apiKey = req.body.apiKey;
+                                tour.id = req.body.id;
+                                tour.name = req.body.name;
+                                tour.steps = req.body.steps;
+                                tour.published = req.body.published;
+
+                                tour.save(function(err, tour) {
+                                    if (err) return res.status(500).send(err.message);
+                                    return res.status(200).jsonp(tour);
+                                });
+                            });
+
+                        }
+
+                        return;
+                    }
+                }
+
+            }
+
+            res.status(404).send('not found');
+
+        });
+
+    } else {
+        res.status(403).send('forbiden');
+    }
+
+};
+*/
+
+
 function checkTourPermission() {
 
     Users.find({

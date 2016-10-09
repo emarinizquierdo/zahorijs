@@ -5,11 +5,13 @@
         <div class="row"></div>
         <div class="row"></div>
         <div class="row">
+          <h5>API KEY</h5>
             Genera una API KEY para poder crear tours para tus aplicaciones. <br/>Esta KEY tendrás que utilizarla en tu aplicación.
             Si vuelves a generar una nueva API KEY, asegúrate de cambiarla allá donde la uses.
         </div>
         <div class="row">
-            <form class="col s12 l5">
+
+            <form class="col s12 l12">
                 <div class="row">
 
                     <ul class="collection with-header">
@@ -25,17 +27,22 @@
 
                 </div>
             </form>
+            <div class="col s12 l12">
+
+            </div>
         </div>
         <div if="{hasToSave}">
             <a class="waves-effect  btn-flat" onclick="{save}">Save</a>
             <a class="waves-effect  btn-flat" onclick="{cancel}">Cancel</a>
         </div>
+        <zjs-user-subscription></zjs-user-subscription>
     </div>
 
     <script>
 
         import superagent from 'superagent';
         import properties from '../properties';
+        import userCard from '../components/zjs-user-subscriptions.tag'
 
         /* Binding */
         var self = this;
@@ -99,5 +106,6 @@
 
             return uuid;
         }
+
     </script>
 </zjs-user-card>

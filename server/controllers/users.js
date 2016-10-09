@@ -1,4 +1,5 @@
 //File: controllers/steps.js
+var gateway = require('../gateway');
 var mongoose = require('mongoose');
 var Users = mongoose.model('Users');
 var Tours = mongoose.model('Tours');
@@ -69,7 +70,11 @@ exports.updateUser = function(req, res) {
             user.save(function(err, user) {
                 if (err) return res.status(500).send(err.message);
 
-                Tours.update({apiKey: _oldApiKey}, {apiKey : user.apiKey}, function(err, tours){
+                Tours.update({
+                    apiKey: _oldApiKey
+                }, {
+                    apiKey: user.apiKey
+                }, function(err, tours) {
 
                     if (err) return res.status(500).send(err.message);
                     res.status(200).jsonp(user);
@@ -90,16 +95,26 @@ exports.addUser = function(req, res) {
     console.log('POST');
     console.log(req.body);
 
-    var user = new Users({
+    gateway.customer.create({
         email: req.body.email,
-        apiKey: req.body.apiKey,
-        displayName: req.body.displayName,
-        image: req.body.image,
-        role: 'user'
+        firstName: req.body.displayName,
+    }, function(err, result) {
+
+        var user = new Users({
+            email: req.body.email,
+            customerId: result.customer.id,
+            apiKey: req.body.apiKey,
+            displayName: req.body.displayName,
+            image: req.body.image,
+            role: 'user'
+        });
+
+        user.save(function(err, user) {
+            if (err) return res.status(500).send(err.message);
+            res.status(200).jsonp(user);
+        });
+
     });
 
-    user.save(function(err, user) {
-        if (err) return res.status(500).send(err.message);
-        res.status(200).jsonp(user);
-    });
+
 };

@@ -1,3 +1,4 @@
 node_modules
 coverage/
 .opt-in
+server/config.json

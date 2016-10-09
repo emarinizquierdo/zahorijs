@@ -1,3 +1,4 @@
+var gateway = require('../gateway');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var config = require('../config.json');
 var mongoose = require('mongoose');
@@ -8,7 +9,9 @@ module.exports = function(passport, router) {
     function extractProfile(profile) {
         var imageUrl = '';
         var email = '';
-console.log(profile);
+
+        console.log(profile);
+        
         if (profile.photos && profile.photos.length) {
             imageUrl = profile.photos[0].value;
         }
@@ -54,15 +57,25 @@ console.log(profile);
 
             if (!user) {
 
-                var user = new Users({
-                    email: _profile.email,
-                    displayName: _profile.displayName,
-                    image: _profile.image,
-                    role : 'user'
-                });
+                gateway.customer.create({
 
-                user.save(function(err, user) {
-                    cb(null, _profile);
+                    email: _profile.email,
+                    firstName: _profile.displayName,
+
+                }, function(err, result) {
+
+                    var user = new Users({
+                        email: _profile.email,
+                        customerId: result.customer.id,
+                        displayName: _profile.displayName,
+                        image: _profile.image,
+                        role: 'user'
+                    });
+
+                    user.save(function(err, user) {
+                        cb(null, _profile);
+                    });
+
                 });
 
             } else {
@@ -113,7 +126,7 @@ console.log(profile);
         function(req, res) {
             var redirect = req.session.oauth2return || '/';
             delete req.session.oauth2return;
-console.log("el return es: " + req.session.oauth2return);
+            console.log("el return es: " + req.session.oauth2return);
             res.redirect(redirect);
 
         }

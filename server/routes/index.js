@@ -2,8 +2,21 @@ var UserCtrl = require('../controllers/users'),
     AppsCtrl = require('../controllers/apps'),
     StepsCtrl = require('../controllers/steps'),
     ToursCtrl = require('../controllers/tours'),
+    SubscriptionsCtrl = require('../controllers/subscriptions'),
+    BraintreeCtrl = require('../controllers/braintree'),
     superagent = require('superagent'),
-    passport = require('passport');
+    passport = require('passport'),
+    braintree = require('braintree');
+
+var TRANSACTION_SUCCESS_STATUSES = [
+    braintree.Transaction.Status.Authorizing,
+    braintree.Transaction.Status.Authorized,
+    braintree.Transaction.Status.Settled,
+    braintree.Transaction.Status.Settling,
+    braintree.Transaction.Status.SettlementConfirmed,
+    braintree.Transaction.Status.SettlementPending,
+    braintree.Transaction.Status.SubmittedForSettlement
+];
 
 module.exports = function(router) {
 
@@ -18,6 +31,17 @@ module.exports = function(router) {
     router.route(_base + '/user/:email', authRequired, UserCtrl.findById);
 
     router.get(_base + '/me', UserCtrl.me);
+
+    /* Subscription REST */
+
+    router.get(_base + '/subscriptions', authRequired, SubscriptionsCtrl.get);
+
+    router.put(_base + '/subscriptions/cancel', authRequired, SubscriptionsCtrl.cancel);
+
+    /* Braintree REST */
+    router.get(_base + '/braintree/token', BraintreeCtrl.token);
+
+    router.post(_base + '/braintree/billing', BraintreeCtrl.billing);
 
     /* Apps REST */
 
@@ -49,6 +73,7 @@ module.exports = function(router) {
         res.redirect('/'); //Can fire before session is destroyed?
     });
 
+
     return router;
 
 }
@@ -78,7 +103,9 @@ function authRequired(req, res, next) {
         checkToken(req.headers.token, function(email) {
 
             if (email) {
-                req.user = {email : email};
+                req.user = {
+                    email: email
+                };
                 next();
                 return;
             } else {
@@ -102,13 +129,13 @@ function authRequired(req, res, next) {
 
 }
 
-function isSuperUser(req, res, next){
-console.log(req.user);
-  if (req.user && (req.user.role == 'superadmin')) {
-      next();
-      return;
-  } else {
-      return res.status(403).send('forbiden');
-  }
+function isSuperUser(req, res, next) {
+    console.log(req.user);
+    if (req.user && (req.user.role == 'superadmin')) {
+        next();
+        return;
+    } else {
+        return res.status(403).send('forbiden');
+    }
 
 }
