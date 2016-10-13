@@ -2,6 +2,7 @@
 var gateway = require('../gateway');
 var mongoose = require('mongoose');
 var Users = mongoose.model('Users');
+var Tours = mongoose.model('Tours');
 var Subscriptions = mongoose.model('Subscriptions');
 
 //GET - Return all Steps in the DB
@@ -43,35 +44,49 @@ exports.billing = function(req, res) {
 
                     if (result.success && result.subscription) {
 
-                      var _subscription = new Subscriptions({
-                        email: req.user.email,
-                        planType : 'm97r',
-                        subscriptionId : result.subscription.id
-                      });
+                        var _subscription = new Subscriptions({
+                            email: req.user.email,
+                            planType: 'm97r',
+                            subscriptionId: result.subscription.id
+                        });
 
-                      _subscription.save(function(err, subscription) {
-                          if(err) return res.status(500).send( err.message);
+                        _subscription.save(function(err, subscription) {
+                            if (err) return res.status(500).send(err.message);
 
-                          for(var i=0; i< user.apps.length; i++){
+                            for (var i = 0; i < user.apps.length; i++) {
 
-                            user.apps[i].active = false;
+                                user.apps[i].active = false;
 
-                            if(i<10){
-                              user.apps[i].active = true;
+                                if (i < 10) {
+                                    user.apps[i].active = true;
+                                }
+
                             }
 
-                          }
+                            console.log('userid...' + user._id);
+                            Tours.update({
+                                    owner: user._id
+                                }, {
+                                    active: true
+                                }, {
+                                    multi: true
+                                },
+                                function(err, result) {
 
-                          user.markModified('apps');
-                          user.save(function(err, user) {
+                                    console.log(result);
+                                    if (err) return res.status(500).send(err.message);
 
-                              if (err) return res.status(500).send(err.message);
-                              console.log(user);
-                              res.status(200).jsonp(subscription);
+                                    user.markModified('apps');
+                                    user.save(function(err, user) {
 
-                          });
+                                        if (err) return res.status(500).send(err.message);
+                                        console.log(user);
+                                        res.status(200).jsonp(subscription);
 
-                      });
+                                    });
+
+                                });
+                        });
 
 
                     } else {

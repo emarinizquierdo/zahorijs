@@ -24,7 +24,8 @@ exports.findById = function(req, res) {
     Tours.findOne({
 
         apiKey: req.params.apikey,
-        id: req.params.id
+        id: req.params.id,
+        active: true
 
     }, function(err, tour) {
         if (err) return res.send(500, err.message);

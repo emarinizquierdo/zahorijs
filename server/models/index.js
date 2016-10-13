@@ -29,6 +29,7 @@ var Steps = new Schema({
 var Tours = new Schema({
     owner : Schema.Types.ObjectId,
     id : String,
+    active : Boolean,
     apiKey : String,
     name: {
       es_ES: String,

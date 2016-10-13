@@ -51,14 +51,36 @@ exports.cancel = function(req, res) {
                                 user.apps[i].active = false;
                             }
 
+
+
                             console.log('saving user.app' + user.apps[i].active);
 
                         }
-                        
-                        user.markModified('apps');
-                        user.save(function(err, tour) {
+
+                        console.log('canceling...' + user.apps[0].appId);
+
+                        Tours.update({
+                            "$and": [{
+                                owner: user._id
+                            }, {
+                                "$nor": [{
+                                    id: user.apps[0].appId
+                                }]
+                            }]
+                        }, {
+                            active: false
+                        }, {
+                            multi: true
+                        }, function(err, result) {
+
                             if (err) return res.status(500).send(err.message);
-                            res.status(200).send();
+
+                            user.markModified('apps');
+                            user.save(function(err, tour) {
+                                if (err) return res.status(500).send(err.message);
+                                res.status(200).send();
+                            });
+
                         });
 
                     });
