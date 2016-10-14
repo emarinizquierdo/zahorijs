@@ -107,7 +107,7 @@
         })
 
         self.start = function () {
-            zahorijs.init({apiKey:"KEYe954a5ee8c8befcc570d65b74342a", appId: "testing"});
+            zahorijs.init({apiKey:"KEYe0e2880ef57022a887e4143f5cea2", appId: "testing"});
         }
 
     </script>

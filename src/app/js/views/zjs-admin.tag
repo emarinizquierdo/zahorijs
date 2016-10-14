@@ -1,7 +1,7 @@
 <zjs-admin>
 
     <div>
-        <zjs-helpme apiKey="KEY8ac63f48cfc8e4052a831d7d8843f" tourId="account-help"></div>
+        <zjs-helpme apiKey="KEYe0e2880ef57022a887e4143f5cea2" tourId="account-help"></div>
         <div class="row"><div class="row"></div><div class="row"></div>
             <div class="col m2 l2">
                 <zjs-admin-sidebar></zjs-admin-sidebar>
