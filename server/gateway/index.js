@@ -2,7 +2,7 @@ var braintree = require("braintree");
 var config;
 
 var _env = process.env.NODE_ENV || 'development';
-
+console.log(_env);
 if (_env == "production") {
     config = require('../config');
 } else {

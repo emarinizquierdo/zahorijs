@@ -7,7 +7,7 @@ var Users = mongoose.model('Users');
 var _env = process.env.NODE_ENV || 'development';
 
 if (_env == "production") {
-    config = require('../config');
+    config = require('../config/');
 } else {
     config = require('../config.json');
 }
