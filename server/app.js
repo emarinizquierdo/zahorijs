@@ -11,6 +11,7 @@ var express = require("express"),
     auth = require('./oauth/oauth2.js')(passport, router),
     session = require('express-session'),
     routes = require('./routes')(router),
+    config = require('./config'),
     cors = require('cors'),
     path = require('path');
 

@@ -1,8 +1,16 @@
 var gateway = require('../gateway');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
-var config = require('../config.json');
+var config;
 var mongoose = require('mongoose');
 var Users = mongoose.model('Users');
+
+var _env = process.env.NODE_ENV || 'development';
+
+if (_env == "production") {
+    config = require('../config');
+} else {
+    config = require('../config.json');
+}
 
 module.exports = function(passport, router) {
 
@@ -11,7 +19,7 @@ module.exports = function(passport, router) {
         var email = '';
 
         console.log(profile);
-        
+
         if (profile.photos && profile.photos.length) {
             imageUrl = profile.photos[0].value;
         }
@@ -40,10 +48,11 @@ module.exports = function(passport, router) {
     // along with the user's profile. The function must invoke `cb` with a user
     // object, which will be set at `req.user` in route handlers after
     // authentication.
+
     passport.use(new GoogleStrategy({
-        clientID: config['OAUTH2_CLIENT_ID'],
-        clientSecret: config['OAUTH2_CLIENT_SECRET'],
-        callbackURL: config['OAUTH2_CALLBACK'],
+        clientID: config[_env].OAUTH2_CLIENT_ID,
+        clientSecret: config[_env].OAUTH2_CLIENT_SECRET,
+        callbackURL: config[_env].OAUTH2_CALLBACK,
         accessType: 'offline'
     }, function(accessToken, refreshToken, profile, cb) {
         // Extract the minimal profile information we need from the profile object

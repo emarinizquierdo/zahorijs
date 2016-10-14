@@ -65,6 +65,7 @@
     "clean-and-copy": "npm run copy-files",
     "prestart": "npm run clean-and-copy",
     "start": "node server/app.js",
+    "start_windows": "set NODE_ENV=development&&node server/app.js",
     "admin": "npm run clean-dist-editor && webpack --env.admin.dev --hot",
     "prebuild": "npm run clean-and-copy",
     "prebuild:prod": "npm run clean-and-copy",
