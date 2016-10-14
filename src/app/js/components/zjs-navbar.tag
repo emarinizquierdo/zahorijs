@@ -2,7 +2,7 @@
 
     <nav>
         <div class="nav-wrapper black">
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <ul id="nav-mobile" class="right">
                 <li class="{'active' : (('/' + url) == active) }" each={ links } if="{showEver || (zsjUserPhantom.isUserLogged && auth) || (!zsjUserPhantom.isUserLogged && !auth)}">
                     <a href="/{ url }">{ name }</a>
                 </li>
@@ -60,7 +60,7 @@
         self.on("mount", function () {
 
         });
-        
+
         _shared.zsjUserPhantom.on('update', function (value) {
             self.user = _shared.zsjUserPhantom.user;
         });
