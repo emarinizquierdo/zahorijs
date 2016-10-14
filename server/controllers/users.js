@@ -1,5 +1,4 @@
 //File: controllers/steps.js
-var gateway = require('../gateway');
 var mongoose = require('mongoose');
 var Users = mongoose.model('Users');
 var Tours = mongoose.model('Tours');
@@ -97,7 +96,7 @@ exports.addUser = function(req, res) {
 
     gateway.customer.create({
         email: req.body.email,
-        firstName: req.body.displayName,
+        firstName: req.body.displayName
     }, function(err, result) {
 
         var user = new Users({

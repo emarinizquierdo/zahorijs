@@ -57,14 +57,14 @@ exports.cancel = function(req, res) {
 
                         }
 
-                        console.log('canceling...' + user.apps[0].appId);
+                        var _excludeAppId = (user && user.apps && user.apps[0] && user.apps[0].appId) ? user.apps[0].appId : "";
 
                         Tours.update({
                             "$and": [{
                                 owner: user._id
                             }, {
                                 "$nor": [{
-                                    id: user.apps[0].appId
+                                    id: _excludeAppId
                                 }]
                             }]
                         }, {

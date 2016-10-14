@@ -21,6 +21,7 @@ exports.token = function(req, res) {
 exports.billing = function(req, res) {
 
     var nonce = req.body.payment_method_nonce;
+console.log(nonce);
 
     if (req.user && req.user.email) {
 
@@ -33,67 +34,25 @@ exports.billing = function(req, res) {
             gateway.customer.find(user.customerId, function(err, result) {
 
                 if (err) return res.send(500, err.message);
-                var token = result.paymentMethods[0].token;
+                console.log(result);
 
-                gateway.subscription.create({
+                if (result.paymentMethods[0]) {
+                  var token = result.paymentMethods[0].token;
 
-                    paymentMethodToken: token,
-                    planId: 'm97r'
+                  _createSubscription(user, req, res, token);
+                } else {
 
-                }, function(err, result) {
+                    gateway.paymentMethod.create({
+                        customerId: user.customerId,
+                        paymentMethodNonce: nonce
+                    }, function(err, result) {
 
-                    if (result.success && result.subscription) {
-
-                        var _subscription = new Subscriptions({
-                            email: req.user.email,
-                            planType: 'm97r',
-                            subscriptionId: result.subscription.id
-                        });
-
-                        _subscription.save(function(err, subscription) {
-                            if (err) return res.status(500).send(err.message);
-
-                            for (var i = 0; i < user.apps.length; i++) {
-
-                                user.apps[i].active = false;
-
-                                if (i < 10) {
-                                    user.apps[i].active = true;
-                                }
-
-                            }
-
-                            console.log('userid...' + user._id);
-                            Tours.update({
-                                    owner: user._id
-                                }, {
-                                    active: true
-                                }, {
-                                    multi: true
-                                },
-                                function(err, result) {
-
-                                    console.log(result);
-                                    if (err) return res.status(500).send(err.message);
-
-                                    user.markModified('apps');
-                                    user.save(function(err, user) {
-
-                                        if (err) return res.status(500).send(err.message);
-                                        console.log(user);
-                                        res.status(200).jsonp(subscription);
-
-                                    });
-
-                                });
-                        });
+                        var token = result.paymentMethod.token;
+                        _createSubscription(user, req, res, token);
+                    });
+                }
 
 
-                    } else {
-                        res.status(500).send(err.message);
-                    }
-
-                });
 
 
             });
@@ -106,3 +65,68 @@ exports.billing = function(req, res) {
     }
 
 };
+
+
+function _createSubscription(user, req, res, token){
+
+  gateway.subscription.create({
+
+      paymentMethodToken: token,
+      planId: 'm97r'
+
+  }, function(err, result) {
+
+      if (result.success && result.subscription) {
+
+          var _subscription = new Subscriptions({
+              email: req.user.email,
+              planType: 'm97r',
+              subscriptionId: result.subscription.id
+          });
+
+          _subscription.save(function(err, subscription) {
+              if (err) return res.status(500).send(err.message);
+
+              for (var i = 0; i < user.apps.length; i++) {
+
+                  user.apps[i].active = false;
+
+                  if (i < 10) {
+                      user.apps[i].active = true;
+                  }
+
+              }
+
+              console.log('userid...' + user._id);
+              Tours.update({
+                      owner: user._id
+                  }, {
+                      active: true
+                  }, {
+                      multi: true
+                  },
+                  function(err, result) {
+
+                      console.log(result);
+                      if (err) return res.status(500).send(err.message);
+
+                      user.markModified('apps');
+                      user.save(function(err, user) {
+
+                          if (err) return res.status(500).send(err.message);
+                          console.log(user);
+                          res.status(200).jsonp(subscription);
+
+                      });
+
+                  });
+          });
+
+
+      } else {
+          res.status(500).send(err.message);
+      }
+
+  });
+
+}

@@ -108,6 +108,7 @@ __webpack_require__.d	dist/editor/zahorijs.editor.js	/^\/******\/ 	__webpack_req
 __webpack_require__.h	dist/editor/zahorijs.editor.js	/^\/******\/ 	__webpack_require__.p = "";$/;"	f
 __webpack_require__.i	dist/editor/zahorijs.editor.js	/^\/******\/ 	__webpack_require__.c = installedModules;$/;"	f
 __webpack_require__.o	dist/editor/zahorijs.editor.js	/^\/******\/ 	};$/;"	f
+_createSubscription	server/controllers/braintree.js	/^function _createSubscription(user, req, res, token){$/;"	f
 _env	server/gateway/index.js	/^var _env = process.env.NODE_ENV || 'development';$/;"	v
 _env	server/oauth/oauth2.js	/^var _env = process.env.NODE_ENV || 'development';$/;"	v
 _environment	admin/services/utils/index.js	/^        var _environment;$/;"	v
@@ -229,7 +230,6 @@ extract-text-webpack-plugin	package.json	/^    "extract-text-webpack-plugin": "^
 fn	dist/editor/zahorijs.editor.js	/^\/******\/ 		var fn = function(request) {$/;"	f
 gateway	server/controllers/braintree.js	/^var gateway = require('..\/gateway');$/;"	v
 gateway	server/controllers/subscriptions.js	/^var gateway = require('..\/gateway');$/;"	v
-gateway	server/controllers/users.js	/^var gateway = require('..\/gateway');$/;"	v
 gateway	server/gateway/index.js	/^var gateway = braintree.connect({$/;"	v
 gateway	server/oauth/oauth2.js	/^var gateway = require('..\/gateway');$/;"	v
 getCSSPath	admin/services/utils/index.js	/^    function getCSSPath(node) {$/;"	f

@@ -13,7 +13,8 @@ exports.findAllApps = function(req, res) {
         }, function(err, user) {
 
             if (err) res.send(500, err.message);
-
+            if (!user) res.send(400);
+            
             console.log('GET /Apps')
             res.status(200).jsonp(user.apps);
 
