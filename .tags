@@ -108,6 +108,7 @@ __webpack_require__.d	dist/editor/zahorijs.editor.js	/^\/******\/ 	__webpack_req
 __webpack_require__.h	dist/editor/zahorijs.editor.js	/^\/******\/ 	__webpack_require__.p = "";$/;"	f
 __webpack_require__.i	dist/editor/zahorijs.editor.js	/^\/******\/ 	__webpack_require__.c = installedModules;$/;"	f
 __webpack_require__.o	dist/editor/zahorijs.editor.js	/^\/******\/ 	};$/;"	f
+_env	server/gateway/index.js	/^var _env = process.env.NODE_ENV || 'development';$/;"	v
 _env	server/oauth/oauth2.js	/^var _env = process.env.NODE_ENV || 'development';$/;"	v
 _environment	admin/services/utils/index.js	/^        var _environment;$/;"	v
 _environment.env	admin/services/utils/index.js	/^            _environment = {$/;"	p
@@ -172,7 +173,7 @@ clean-dist-editor	package.json	/^    "clean-dist-editor": "rimraf dist\/editor",
 click	src/library/js/components/tour/overlayer/clicker.js	/^    function click(pCallback) {$/;"	c
 clicked	zahorijs/main.js	/^var clicked = {};$/;"	v
 client_id	zahorijs/manifest.json	/^    "client_id": "606554190943-0av43b0bdcia28guasiimgmv9m5oj4do.apps.googleusercontent.com",$/;"	f
-config	server/gateway/index.js	/^var config = require('..\/config.json');$/;"	v
+config	server/gateway/index.js	/^var config;$/;"	v
 config	server/oauth/oauth2.js	/^var config;$/;"	v
 configure	src/library/js/core.js	/^    function configure(pOptions) {$/;"	f
 const.test	karma.conf.js	/^const webpackEnv = {test: true}$/;"	p
