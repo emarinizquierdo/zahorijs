@@ -36,9 +36,7 @@
 
         /* Initialization */
         this.on("mount", function (a) {
-            this.users.getUsers(function(){
-              that.update();
-            });
+            this.users.getUsers();
         });
 
     </script>

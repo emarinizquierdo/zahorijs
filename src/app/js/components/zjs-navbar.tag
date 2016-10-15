@@ -60,9 +60,7 @@
         riot.route('*', isActive);
 
         that.on("mount", function () {
-            users.getMe(function () {
-                that.update();
-            });
+            users.getMe();
         });
 
     </script>

@@ -35,7 +35,11 @@ function Users() {
                 that.users = res.body;
             }
 
-            p_callback();
+            riot.update();
+
+            if(typeof p_callback == 'function'){
+              p_callback(err, res);
+            }
 
         });
 
@@ -54,7 +58,10 @@ function Users() {
                 that.isUserLogged = true;
             }
 
-            p_callback();
+            riot.update();
+            if(typeof p_callback == 'function'){
+              p_callback(err, res);
+            }
 
         });
 
@@ -69,7 +76,10 @@ function Users() {
               that.me = res.body;
           }
 
-          p_callback();
+          riot.update();
+          if(typeof p_callback == 'function'){
+            p_callback(err, res);
+          }
 
       });
 

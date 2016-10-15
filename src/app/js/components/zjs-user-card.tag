@@ -60,14 +60,13 @@
 
         /* Initialization */
         this.on("mount", function (a) {
-          
+
         });
 
         function save() {
 
           users.updateMe(function(){
               that.hasToSave = false;
-              that.update();
           })
 
         }

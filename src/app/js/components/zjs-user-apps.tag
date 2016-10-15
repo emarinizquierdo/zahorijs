@@ -75,9 +75,7 @@
 
         /* Initialization */
         this.on("mount", function (a) {
-            apps.load(function () {
-                that.update();
-            });
+            apps.get();
         });
 
         /* Private Methods */
@@ -97,9 +95,7 @@
 
         function removeApp(_appId) {
 
-            apps.remove(_appId, function () {
-                that.update();
-            });
+            apps.remove(_appId);
 
         }
 

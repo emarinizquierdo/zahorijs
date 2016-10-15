@@ -59,17 +59,19 @@
     <script>
 
         import subs from '../model/subscriptions';
+        import apps from '../model/apps';
         import superagent from 'superagent';
         import properties from '../properties';
 
         /* Binding */
-        var self = this;
+        var that = this;
 
         /* Private Vars */
         var oldKey;
 
         /* Public Variables */
         this.subscriptions = subs;
+        this.apps = apps;
         this.data = subs.data;
         this.cancelSubscriptions = _cancelSubscriptions;
 
@@ -95,7 +97,7 @@
                             flow: 'vault'
                         }, function (tokenizeErr, payload) {
                             // Submit payload.nonce
-                            self.subscriptions.billing(payload.nonce, _getSubscriptions);
+                            that.subscriptions.billing(payload.nonce, _getSubscriptions);
                         });
 
                     }, false);
@@ -106,11 +108,11 @@
 
         function _getSubscriptions() {
 
-            self.subscriptions.get(function () {
+            that.subscriptions.get(function () {
 
-                self.update();
+                that.update();
 
-                if (!self.subscriptions.data) {
+                if (!that.subscriptions.data) {
                     _paintPaypal();
 
                 } else {}
@@ -120,21 +122,23 @@
 
         function _cancelSubscriptions() {
 
-            self.subscriptions.cancel(function () {
+            that.subscriptions.cancel(function () {
 
-                self.update();
+              that.update();
 
-                if (!self.subscriptions.data) {
-                    _paintPaypal();
+              if (!that.subscriptions.data) {
+                  _paintPaypal();
 
-                } else {}
+              } else {}
+
+                that.apps.get();
 
             });
         }
 
         function _paintPaypal() {
 
-            var token = self.subscriptions.token;
+            var token = that.subscriptions.token;
 
             if (token) {
 
@@ -142,8 +146,8 @@
 
             } else {
 
-                self.subscriptions.on("token_ready", function (data) {
-                    _setup(self.subscriptions.token);
+                that.subscriptions.on("token_ready", function (data) {
+                    _setup(that.subscriptions.token);
                 });
 
             }

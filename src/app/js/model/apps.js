@@ -17,20 +17,23 @@ function Apps() {
     this.apps = null;
 
     /* Revealing Methods */
-    this.load = _load;
+    this.get = _get;
     this.add = _add;
     this.remove = _remove;
 
 
     /* Private Methods */
-    function _load(p_callback) {
+    function _get(p_callback) {
         superagent.get(properties.services.apps).end(function(err, res) {
 
             if (res && res.body) {
                 that.apps = res.body;
             }
 
-            p_callback();
+            riot.update();
+            if(typeof p_callback == 'function'){
+              p_callback();
+            }
         });
 
     }
@@ -46,7 +49,10 @@ function Apps() {
                 that.apps = res.body;
             }
 
-            p_callback();
+            riot.update();
+            if(typeof p_callback == 'function'){
+              p_callback();
+            }
 
         });
 
@@ -60,7 +66,10 @@ function Apps() {
                 that.apps = res.body;
             }
 
-            p_callback();
+            riot.update();
+            if(typeof p_callback == 'function'){
+              p_callback();
+            }
 
         });
 
