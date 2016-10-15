@@ -2,31 +2,32 @@
 
     <div>
         <div class="collection">
-            <a if="{user.role == 'superadmin'}" href="/admin/users" class="collection-item blue-text {'blue darken-3 white-text' : isActive('/admin/users')}">Users</a>
+            <a if="{users.me.role == 'superadmin'}" href="/admin/users" class="collection-item blue-text {'blue darken-3 white-text' : isActive('/admin/users')}">Users</a>
             <a href="/admin" class="collection-item blue-text {'blue darken-3 white-text' : isActive('/admin')}">Account</a>
         </div>
     </div>
 
     <script>
 
-        var self = this;
+        import users from '../model/users';
+
+        /* Binding */
+        var that = this;
+
         /*Public Methods */
-        this.zsjUserPhantom = _shared.zsjUserPhantom;
         this.isActive = isActive;
-        self.user;
+        this.users = users;
 
         function isActive(itemName) {
             return location.pathname == itemName;
         }
 
         this.on('mount', function () {
-            self.user = _shared.zsjUserPhantom.user;
-            self.update();
+
         });
+
     </script>
 
-    <style scoped>
-
-    </style>
+    <style scoped></style>
 
 </zjs-admin-sidebar>

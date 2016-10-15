@@ -152,11 +152,9 @@
 
         /* Initialization */
         this.on("mount", function (a) {
-            window._shared.zsjUserCard = self;
-
             _getSubscriptions();
-
         });
+
     </script>
     <style scoped>
 

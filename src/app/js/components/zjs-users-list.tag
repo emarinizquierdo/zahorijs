@@ -13,7 +13,7 @@
        </thead>
 
        <tbody class="stripped">
-         <tr each={ users } class="{'green lighten-5' : apps.length > 1}">
+         <tr each={ users.users } class="{'green lighten-5' : apps.length > 1}">
            <td><div class="chip white"><img src="{image}" alt="" id="profileImage" class="circle">{displayName}</div></td>
            <td>{email}</td>
            <td><a href="https://sandbox.braintreegateway.com/merchants/9y2st4x3h54t8n58/customers/{customerId}" target="_blank">{customerId}</a></td>
@@ -22,34 +22,24 @@
        </tbody>
      </table>
 
-
     <script>
 
         import superagent from 'superagent';
         import properties from '../properties';
+        import users from '../model/users';
 
         /* Binding */
-        var self = this;
+        var that = this;
 
         /* Public Variables */
-        this.user = _shared.zsjUserPhantom.user;
-        this.users = [];
+        this.users = users;
 
         /* Initialization */
         this.on("mount", function (a) {
-            loadUsers();
-        });
-
-
-        function loadUsers() {
-            superagent.get(properties.services.users).end(function (err, res) {
-                if (res && res.body) {
-                    self.users = res.body;
-                }
-                self.update();
+            this.users.getUsers(function(){
+              that.update();
             });
-        }
-
+        });
 
     </script>
 

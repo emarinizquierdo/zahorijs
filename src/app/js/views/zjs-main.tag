@@ -9,37 +9,52 @@
         import './zjs-admin.tag';
         import './zjs-login.tag';
         import '../components/zjs-navbar.tag';
+        import users from '../model/users';
 
-        var self = this;
-        var currentPage = null;
+        /* Binding */
+        var that = this;
 
-        riot.route('/auth/*', auth);
-        riot.route('/admin/*', goTo);
-        riot.route('*', goTo);
-        riot.route('', goTo);
+        /* Public Variables */
+        this.users = users;
 
-        function auth(path) {
+        /* Private Variables */
+        var _currentPage = null;
+
+        /* Initialization */
+        _routing();
+
+        /* Private Methods */
+        function _routing(){
+          riot.route('/auth/*', _auth);
+          riot.route('/admin/*', _goTo);
+          riot.route('*', _goTo);
+          riot.route('', _goTo);
+        }
+
+        function _auth(path) {
 
             if (path == "logout") {
-                window._shared.zsjUserPhantom.trigger('logout');
+                users.logout();
+                that.update();
             }
 
             window.location.href = '/auth/' + path;
 
         }
 
-        function goTo(path) {
+        function _goTo(path) {
 
-            if (currentPage) {
-                currentPage.unmount(true);
+            if (_currentPage) {
+                _currentPage.unmount(true);
             }
 
-            if (!path || (path == "admin" && !_shared.zsjUserPhantom.isUserLogged)) {
+            if (!path || (path == "admin" && !users.isUserLogged)) {
                 riot.route("home");
             }
 
-            currentPage = riot.mount('div#content', 'zjs-' + path)[0];
+            _currentPage = riot.mount('div#content', 'zjs-' + path)[0];
         }
+
     </script>
 
     <style scoped>

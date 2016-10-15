@@ -3,10 +3,10 @@
     <nav>
         <div class="nav-wrapper black">
             <ul id="nav-mobile" class="right">
-                <li class="{'active' : (('/' + url) == active) }" each={ links } if="{showEver || (zsjUserPhantom.isUserLogged && auth) || (!zsjUserPhantom.isUserLogged && !auth)}">
+                <li class="{'active' : (('/' + url) == active) }" each={ links } if="{showEver || (users.isUserLogged && auth) || (!users.isUserLogged && !auth)}">
                     <a href="/{ url }">{ name }</a>
                 </li>
-                <li if="{zsjUserPhantom.isUserLogged}"><img src="{user.image}" alt="" id="profileImage" class="circle">
+                <li if="{users.isUserLogged}"><img src="{users.me.image}" alt="" id="profileImage" class="circle">
                 </li>
             </ul>
 
@@ -15,9 +15,13 @@
 
     <script>
 
-        var self = this;
+        import users from '../model/users';
+
+        /* Binding */
+        var that = this;
 
         /* Public Variables */
+        this.users = users;
         this.links = [
             {
                 name: "Home",
@@ -43,13 +47,11 @@
         ];
 
         /* Public Methods */
-        this.zsjUserPhantom = _shared.zsjUserPhantom;
-        self.user = {};
-        self.active = 'algo';
+        this.active = 'algo';
 
         /* Private Methods */
         function isActive() {
-            self.active = location.pathname;
+            that.active = location.pathname;
             riot.update();
         }
 
@@ -57,12 +59,10 @@
 
         riot.route('*', isActive);
 
-        self.on("mount", function () {
-
-        });
-
-        _shared.zsjUserPhantom.on('update', function (value) {
-            self.user = _shared.zsjUserPhantom.user;
+        that.on("mount", function () {
+            users.getMe(function () {
+                that.update();
+            });
         });
 
     </script>

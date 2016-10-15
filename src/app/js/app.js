@@ -1,6 +1,5 @@
-window._shared = {};
+'use strict'
 
-import subscriptions from './components/zjs-user-phantom.tag';
 import './views/zjs-main.tag';
 import './model/subscriptions.js';
 

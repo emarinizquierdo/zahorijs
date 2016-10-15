@@ -16,13 +16,13 @@
 
                     <ul class="collection with-header">
                         <li class="collection-header">
-                            <h6>{user.email}</h6>
+                            <h6>{users.me.email}</h6>
                         </li>
                         <li class="collection-item">
-                            <a class="waves-effect waves-light btn {'red darken-4' : user.apiKey, 'blue' : !user.apiKey}" onclick="{generateApiKey}">
-                                <span if="{user.apiKey}">Re</span>Generate API KEY</a>
+                            <a class="waves-effect waves-light btn {'red darken-4' : users.me.apiKey, 'blue' : !users.me.apiKey}" onclick="{generateApiKey}">
+                                <span if="{users.me.apiKey}">Re</span>Generate API KEY</a>
                         </li>
-                        <li if="{user.apiKey}" class="collection-item grey-text">{user.apiKey}</li>
+                        <li if="{users.me.apiKey}" class="collection-item grey-text">{users.me.apiKey}</li>
                     </ul>
 
                 </div>
@@ -42,10 +42,11 @@
 
         import superagent from 'superagent';
         import properties from '../properties';
-        import userCard from '../components/zjs-user-subscriptions.tag'
+        import userCard from '../components/zjs-user-subscriptions.tag';
+        import users from '../model/users';
 
         /* Binding */
-        var self = this;
+        var that = this;
 
         /* Private Vars */
         var oldKey;
@@ -54,39 +55,32 @@
         this.save = save;
         this.cancel = cancel;
         this.generateApiKey = generateApiKey;
-        this.user = _shared.zsjUserPhantom.user;
+        this.users = users;
         this.hasToSave = false;
 
         /* Initialization */
         this.on("mount", function (a) {
-            window._shared.zsjUserCard = self;
+          
         });
 
         function save() {
 
-            superagent.put(properties.services.user).send({apiKey: self.user.apiKey}).end(function (err, res) {
-
-                // Calling the end function will send the request
-                if (res && res.body) {
-
-                    _shared.zsjUserPhantom.user = res.body;
-                    _shared.zsjUserPhantom.persistUser();
-                }
-                self.hasToSave = false;
-                self.update();
-            });
+          users.updateMe(function(){
+              that.hasToSave = false;
+              that.update();
+          })
 
         }
 
         function cancel() {
-            self.user.apiKey = oldKey;
-            self.hasToSave = false;
+            that.users.me.apiKey = oldKey;
+            that.hasToSave = false;
         }
 
         function generateApiKey() {
-            oldKey = self.user.apiKey;
-            self.user.apiKey = generateUUID();
-            self.hasToSave = true;
+            oldKey = users.me.apiKey;
+            users.me.apiKey = generateUUID();
+            that.hasToSave = true;
         }
 
         function generateUUID() {

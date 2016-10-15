@@ -35,6 +35,7 @@
         this.on('mount', function () {
             self.message = self.opts.message;
         });
+        
     </script>
 
     <style scoped></style>
