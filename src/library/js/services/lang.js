@@ -32,20 +32,7 @@ function lang(properties) {
          */
         function __init__() {
 
-            if ((typeof bbva !== "undefined") && bbva.front) {
-                //get Intranet language
-                bbva.front.global.Invoke("getCurrentLanguage", function(data) {
 
-                    setLang.call(this, data.lang);
-
-                }.bind(this));
-
-                bbva.front.util.crossframe.Subscribe('bbva.front.changeLanguage', function(data) {
-
-                    setLang.call(this, data.language);
-
-                }.bind(this));
-            }
 
         }
 
@@ -85,7 +72,7 @@ function lang(properties) {
         /**
          * Literal class.
          * With this class you can create a span multilanguage element that
-         * listen for LANG_CHANGED event triggered for setLang or bbva.front subscription
+         * listen for LANG_CHANGED event triggered for setLang
          */
         function Literal( ) {
 

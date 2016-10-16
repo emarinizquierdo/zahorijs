@@ -24,7 +24,6 @@ function screen(properties) {
          */
         function __init__() {
 
-            HPDViewportListener();
 
         }
 
@@ -101,8 +100,8 @@ function screen(properties) {
                     if (!isElementOutViewport(_element)) {
                         return true;
                     }
-                    
-                }                
+
+                }
 
                 if(properties.header && properties.header > 0){
                     scrollElmVert(_element, -properties.header);
@@ -148,30 +147,6 @@ function screen(properties) {
                     };
                 }
             }
-        }
-
-        /**
-         * Method that listen HPD events about scroll and main iframe resizing
-         * and public values in properties.screen property
-         */
-        function HPDViewportListener() {
-
-            if (typeof bbva != 'undefined' && bbva.front) {
-
-                bbva.front.global.Invoke("GetScreenInfo", function(data) {
-                    properties.screen = data;
-                }.bind(this));
-
-                bbva.front.util.crossframe.Subscribe("OnScroll", function(data) {
-                    properties.screen = data;
-                }.bind(this));
-
-                bbva.front.util.crossframe.Subscribe("OnResize", function(data) {
-                    properties.screen = data;
-                }.bind(this));
-
-            }
-
         }
 
         return new Screen();
