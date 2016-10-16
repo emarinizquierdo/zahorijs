@@ -5,14 +5,11 @@ import tour from './components/tour/tour';
 
 export default Core;
 
-    var GUIDED_TOUR_SET_TOUR = "setUserTour",
-        GUIDED_TOUR_HELP_MESSAGE = "bbva.front.launchUserTour";
-
-
     /**
      * Main Usertour Class
      */
     function Core() {
+
 
         /* Get Constructor */
         var Lang = lang(configuration.effectiveProperties),

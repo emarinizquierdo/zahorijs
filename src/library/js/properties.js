@@ -3,10 +3,10 @@ export default {
     atom : 'USERTOUR',
 
     connector: {
-        local: '/bbva-intranet',
-        dev: '/bbva-intranet',
-        au: '/bbva-intranet',
-        pro: '/bbva-intranet'
+        local: '',
+        dev: 'http://zahorijs-nefele.rhcloud.com/',
+        au: 'http://zahorijs-nefele.rhcloud.com/',
+        pro: 'http://zahorijs-nefele.rhcloud.com/'
     },
 
     services: {

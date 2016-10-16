@@ -84,7 +84,7 @@
             var _appId = that["app_id"].value,
                 _appName = that["app_name"].value;
 
-            apps.saveNew(_appId, _appName, function () {
+            apps.add(_appId, _appName, function () {
                 that.adding = false;
                 that["app_id"].value = null;
                 that["app_name"].value = null;

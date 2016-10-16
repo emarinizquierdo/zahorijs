@@ -24,7 +24,7 @@ function tours(properties) {
          */
         function get(callback, pRetrieveReaded) {
 
-            request.get('/api' +  properties.services.commons.tour + "/" + properties.apiKey + "/" + properties.appId)
+            request.get(properties.connector[properties.environment] + '/api' +  properties.services.commons.tour + "/" + properties.apiKey + "/" + properties.appId)
                 .end(callback);
 
         };
