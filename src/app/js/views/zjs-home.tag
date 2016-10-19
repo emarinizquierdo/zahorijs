@@ -37,6 +37,7 @@
               <zjs-intro></zjs-intro>
               <zjs-features></zjs-features>
               <zjs-howto></zjs-howto>
+              <zjs-comercial></zjs-comercial>
             </div>
         </div>
         <div class="footer">
@@ -50,6 +51,7 @@
       import './zjs-intro.tag';
       import './zjs-features.tag';
       import './zjs-howto.tag';
+      import './zjs-comercial.tag';
 
         var self = this;
 
