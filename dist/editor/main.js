@@ -53,36 +53,40 @@ chrome.browserAction.onClicked.addListener(function(tab) {
             _version = "";
         }
 
+        chrome.identity.getAuthToken({ 'interactive': true }, function(token) {
+          chrome.tabs.executeScript(null, {
 
-        chrome.tabs.executeScript(null, {
+              code: "var script = document.createElement('link');" +
+                  "script.setAttribute('rel', 'stylesheet');" +
+                  "script.setAttribute('href', '" + _effectiveServer + "main.editor.css?" + _nocache +"');" +
+                  "document.head.appendChild(script);" +
+                  //"script = document.createElement('link');" +
+                  //"script.setAttribute('rel', 'stylesheet');" +
+                  //"script.setAttribute('href', '" + _effectiveServer + "main.css?" + _nocache +"');" +
+                  "document.head.appendChild(script);" +
+                  "script = document.createElement('link');" +
+                  "script.setAttribute('rel', 'stylesheet');" +
+                  "script.setAttribute('href', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css');" +
+                  "document.head.appendChild(script);" +
+                  "script = document.createElement('script');" +
+                  "script.setAttribute('type', 'text/javascript');" +
+                  "script.setAttribute('src', '//cdn.tinymce.com/4/tinymce.min.js');" +
+                  "document.head.appendChild(script);" +
+                  "script = document.createElement('script');" +
+                  "script.setAttribute('type', 'text/javascript');" +
+                  "script.setAttribute('src', '" + _effectiveServer + "zahorijs.editor" + _version + ".js?" + _nocache +"');" +
+                  "document.head.appendChild(script);" +
+                  "script = document.createElement('script');" +
+                  "script.setAttribute('type', 'text/javascript');" +
+                  "script.setAttribute('src', '" + _effectiveServer + "zahorijs" + _version + ".js?" + _nocache +"');" +
+                  "document.head.appendChild(script);" +
+                  "script = document.createElement('script');" +
+                  "script.textContent = 'var TOKENOAUTH=\"" + token + "\";';" +
+                  "document.head.appendChild(script);"
+          });
 
-            code: "var script = document.createElement('link');" +
-                "script.setAttribute('rel', 'stylesheet');" +
-                "script.setAttribute('href', '" + _effectiveServer + "main.editor.css?" + _nocache +"');" +
-                "document.head.appendChild(script);" +
-                //"script = document.createElement('link');" +
-                //"script.setAttribute('rel', 'stylesheet');" +
-                //"script.setAttribute('href', '" + _effectiveServer + "main.css?" + _nocache +"');" +
-                "document.head.appendChild(script);" +
-                "script = document.createElement('link');" +
-                "script.setAttribute('rel', 'stylesheet');" +
-                "script.setAttribute('href', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css');" +
-                "document.head.appendChild(script);" +
-                "script = document.createElement('script');" +
-                "script.setAttribute('type', 'text/javascript');" +
-                "script.setAttribute('src', '//cdn.tinymce.com/4/tinymce.min.js');" +
-                "document.head.appendChild(script);" +
-                "script = document.createElement('script');" +
-                "script.setAttribute('type', 'text/javascript');" +
-                "script.setAttribute('src', '" + _effectiveServer + "zahorijs.editor" + _version + ".js?" + _nocache +"');" +
-                "document.head.appendChild(script);" +
-                "script = document.createElement('script');" +
-                "script.setAttribute('type', 'text/javascript');" +
-                "script.setAttribute('src', '" + _effectiveServer + "zahorijs" + _version + ".js?" + _nocache +"');" +
-                "document.head.appendChild(script);" +
-                "script = document.createElement('script');" +
-                "document.head.appendChild(script);"
         });
+
 
     });
 });

@@ -12,6 +12,18 @@
 zahorijs.init({apiKey: 'API_KEY', appId: 'APP_ID'});
 &lt;/script&gt;</code></pre>
 
+        <div>
+          <h5>Install the ZahoriJs Chrome Extension Editor</h5>
+          <div class="row valign-wrapper">
+            <div class="col s1 center-align">
+            <a class="s-wa  e-f-s" href="https://chrome.google.com/webstore/detail/zahorijs/fnpgnienaolefadnnahnhjimnflmkcha" target="_blank">
+                <div class="od-s-wa"><img alt="Extensión" aria-label="Extensión" src="https://lh3.googleusercontent.com/Ny4KyKFibvV4XGfTRTfjJn6mh09DA5axdvC9qWKcpomz8l46Fg22QUCNONfku7UpDeJx3DJO1KU=s26-h26-e365-rw" class="e-f-s" style=" width:26px; height:26px;"></div>
+            </a>
+          </div>
+          <div class="col s11">
+            With the ZahoriJs Chrome Extension Editor, you only have to execute in the application you want to include your tour, configure with the API_KEY and APP_ID the editor, and you only have to select the elements you want to highlight. Easy!
+          </div>
+        </div>
     </div>
 
     <script>
@@ -20,8 +32,7 @@ zahorijs.init({apiKey: 'API_KEY', appId: 'APP_ID'});
     </script>
 
     <style scoped>
-        .html {
-            }
+        .html {}
 
         pre {
             display: block;
@@ -50,6 +61,32 @@ zahorijs.init({apiKey: 'API_KEY', appId: 'APP_ID'});
         .hljs-template-tag,
         .hljs-type {
             color: #4d90fe;
+        }
+
+        .od-s-wa {
+          display: inline-block;
+            position: relative;
+            height: 64px;
+            width: 64px;
+            background: no-repeat url("https://ssl.gstatic.com/chrome/webstore/images/sprites/common-64d82d8bc25b46502043dc430960d017.png") 0 0;
+        }
+
+        .od-s-wa > .A-Ce-ze-k,
+        .od-s-wa > img {
+            position: absolute;
+            top: 19px;
+            left: 19px;
+            right: auto;
+            height: 26px;
+            width: 26px;
+            margin: 0;
+
+            width: 26px;
+            height: 26px;
+        }
+
+        h5{
+          margin-top: 30px;
         }
 
     </style>
