@@ -23,12 +23,18 @@
         /* Public Variables */
         this.users = users;
         this.links = [
+
             {
                 name: "Home",
                 url: "home",
                 auth: false,
                 showEver: true
             }, {
+                name: "Docs",
+                url: "docs",
+                auth: false,
+                showEver: true
+            },{
                 name: "Admin",
                 url: "admin",
                 auth: true,

@@ -30,7 +30,6 @@
                     <p class="light center">You don't need to code. Only select your areas and that's all!</p>
                 </div>
             </div>
-
         </div>
     </div>
     <style scoped>

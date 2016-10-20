@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="footer">
-
+          <zjs-footer></zjs-footer>
 
         </div>
     </div>
@@ -52,6 +52,7 @@
       import './zjs-features.tag';
       import './zjs-howto.tag';
       import './zjs-comercial.tag';
+      import './zjs-footer.tag';
 
         var self = this;
 
@@ -121,7 +122,7 @@
         }
 
         .footer{
-          height: 100px;
+          font-size: .9rem;
           background: #111;
         }
     </style>
